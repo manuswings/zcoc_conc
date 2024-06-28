@@ -1,0 +1,223 @@
+<mvc:View controllerName="lam.zcoc_conc.controller.Create"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" height="100%"
+    xmlns:core="sap.ui.core"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:unified="sap.ui.unified"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:smartvariants="sap.ui.comp.smartvariants"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:m="sap.m"
+    xmlns:me="sap.me"
+    xmlns:f="sap.f"
+    xmlns:table="sap.ui.table"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:uxap="sap.uxap"
+    xmlns:layout="sap.ui.layout"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartmultiinput="sap.ui.comp.smartmultiinput"    
+    xmlns:upload="sap.m.upload"
+    xmlns:blockcolor="sap.blockcolor">
+    <uxap:ObjectPageLayout id="ObjectPageLayout" showFooter="true" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="true" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:expandedHeading>
+                    <VBox>
+                        <Breadcrumbs currentLocationText="Raise CoC &amp; CoNC">
+                            <Link text="Back to Home"></Link>
+                        </Breadcrumbs>
+                        <Title text="Create Request" wrapping="true" class="sapUiSmallMarginEnd"/>
+                    </VBox>
+
+                </uxap:expandedHeading>
+
+                <uxap:snappedHeading>
+                    <VBox>
+                        <Breadcrumbs currentLocationText="Raise CoC &amp; CoNC">
+                            <Link text="Back to Home" press="fnGoToHome"></Link>
+                        </Breadcrumbs>
+                        <Title text="Create Request" wrapping="true" class="sapUiSmallMarginEnd"/>
+                    </VBox>
+                </uxap:snappedHeading>
+
+                <uxap:navigationActions>
+                    <!-- <OverflowToolbarButton type="Transparent" icon="sap-icon://comment" text="Comments" tooltip="Comments" /> -->
+                </uxap:navigationActions>
+
+                <uxap:actions>
+                    <!-- <Button icon="sap-icon://comment" text="Comments" type="Transparent"/> -->
+                </uxap:actions>
+
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:headerContent>
+            <FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+                <VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+                    <Label text="Requested By"/>
+                    <Text text="{submitted_by}"/>
+                </VBox>
+                <VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+                    <Label text="Submitted On"/>
+                    <Text text="{ path : 'date_submitted' , type : 'sap.ui.model.odata.type.DateTime',formatOptions : { pattern : 'MMM dd, yyyy', UTC : true } }"/>
+                </VBox>
+                <VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+                    <Label text="Request Status"/>
+                    <Text text="{request_status}"/>
+                </VBox>
+            </FlexBox>
+        </uxap:headerContent>
+
+        <uxap:sections>
+            <uxap:ObjectPageSection title="Request Details" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <smartform:SmartForm editTogglable="false" entityType="ZCOC_CONC_SRV.MasterType" title="Request Details" editable="true">
+                                <smartform:layout>
+                                    <smartform:ColumnLayout columnsM="1" columnsL="3" columnsXL="3"/>
+                                </smartform:layout>
+                                <smartform:Group>
+                                    <smartform:GroupElement>
+                                        <smartform:label>
+                                            <Label text="{/#MasterType/pg_csbg_bd_alignment/@sap:label}"></Label>
+                                        </smartform:label>
+                                        <SegmentedButton selectedKey="{pg_csbg_bd_alignment}">
+                                            <items>
+                                                <SegmentedButtonItem text="Yes, Aligned" key="Yes"/>
+                                                <SegmentedButtonItem text="No" key="No" />
+                                            </items>
+                                        </SegmentedButton>
+                                        <!-- <smartfield:SmartField value="{pg_csbg_bd_alignment}" entitySet="MasterSet">
+                                            <smartfield:configuration>
+                                                <smartfield:Configuration controlType="selection" displayBehaviour="OnOff" />
+                                            </smartfield:configuration>
+                                        </smartfield:SmartField> -->
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartfield:SmartField value="{date_requested}" entitySet="MasterSet">
+                                            <smartfield:configuration>
+                                                <smartfield:Configuration controlType="datePicker"/>
+                                            </smartfield:configuration>
+                                        </smartfield:SmartField>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartform:label>
+                                            <Label text="CoC Applicable Date"></Label>
+                                        </smartform:label>
+                                        <Select forceSelection="true" placeholder="Select {/#MasterType/coc_applicable_quarter/@sap:label}" selectedKey="{coc_applicable_quarter}">
+                                            <core:Item key="Q1" text="Q1" />
+                                            <core:Item key="Q2" text="Q2" />
+                                            <core:Item key="Q3" text="Q3" />
+                                            <core:Item key="Q4" text="Q4" />
+                                        </Select>
+                                        <Select forceSelection="true" placeholder="Select {/#MasterType/coc_applicable_year/@sap:label}" selectedKey="{coc_applicable_year}">
+                                            <core:Item key="2024" text="2024" />
+                                            <core:Item key="2023" text="2023" />
+                                            <core:Item key="2022" text="2022" />
+                                        </Select>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartform:label>
+                                            <Label text="{/#MasterType/commitment_level/@sap:label}"></Label>
+                                        </smartform:label>
+                                        <SegmentedButton selectedKey="{commitment_level}">
+                                            <items>
+                                                <SegmentedButtonItem text="Binding" key="Binding"/>
+                                                <SegmentedButtonItem text="Non-Binding" key="Non-Binding" />
+                                            </items>
+                                        </SegmentedButton>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartfield:SmartField value="{customer}" editable="false" contextEditable="false" entitySet="MasterSet" />
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartmultiinput:SmartMultiInput placeholder="Please select {/#MasterType/fab_and_geo_region/@sap:label}" value="{fab_and_geo_region}" entitySet="MasterSet" selectedKey="{fab_and_geo_region}">
+                                        </smartmultiinput:SmartMultiInput>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                       <smartmultiinput:SmartMultiInput placeholder="Please select {/#MasterType/process_module/@sap:label}" value="{process_module}" entitySet="MasterSet">
+                                        </smartmultiinput:SmartMultiInput>                                      
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartmultiinput:SmartMultiInput value="{technology_node}" placeholder="Please select {/#MasterType/technology_node/@sap:label}" entitySet="MasterSet">
+                                        </smartmultiinput:SmartMultiInput>                                    
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartmultiinput:SmartMultiInput value="{application}" placeholder="Please select {/#MasterType/application/@sap:label}" entitySet="MasterSet">
+                                        </smartmultiinput:SmartMultiInput>                                       
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartfield:SmartField value="{competitive_benchmark}" placeholder="Please enter {/#MasterType/competitive_benchmark/@sap:label}" entitySet="MasterSet" app:multiLineSettings="{cols: 50, rows: 3}" />
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartform:label>
+                                            <Label text="{/#MasterType/conc_needed/@sap:label}"></Label>
+                                        </smartform:label>
+                                        <SegmentedButton selectedKey="{conc_needed}">
+                                            <items>
+                                                <SegmentedButtonItem text="Yes" key="Yes"/>
+                                                <SegmentedButtonItem text="No" key="No" />
+                                            </items>
+                                        </SegmentedButton>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartfield:SmartField value="{partfamily_included_conc}" placeholder="Please enter {/#MasterType/partfamily_included_conc/@sap:label}" entitySet="MasterSet" app:multiLineSettings="{cols: 50, rows: 3}"/>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartfield:SmartField value="{previous_commitment}" placeholder="Please enter {/#MasterType/previous_commitment/@sap:label}" entitySet="MasterSet" app:multiLineSettings="{cols: 50, rows: 3}"/>
+                                    </smartform:GroupElement>
+                                </smartform:Group>
+                            </smartform:SmartForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+
+            <uxap:ObjectPageSection title="Attachment" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <upload:UploadSet instantUpload="true" showIcons="true" uploadEnabled="true" terminationEnabled="true" fileTypes="txt,doc,png" maxFileNameLength="30" maxFileSize="200" mediaTypes="text/plain,application/msword,image/png" mode="MultiSelect" selectionChanged="onSelectionChange">
+                                <upload:toolbar>
+                                    <OverflowToolbar>
+                                        <ToolbarSpacer/>
+                                        <Button id="uploadSelectedButton" text="Upload selected" press="onUploadSelectedButton"/>
+                                        <Button id="downloadSelectedButton" text="Download selected" press="onDownloadSelectedButton"/>
+                                        <Button id="versionButton" enabled="false" text="Upload a new version" press="onVersionUpload"/>
+                                        <upload:UploadSetToolbarPlaceholder />
+                                    </OverflowToolbar>
+                                </upload:toolbar>
+                                <upload:items>
+                                </upload:items>
+                            </upload:UploadSet>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Comments" titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <VBox>
+                                <FeedInput post="onPost" icon="test-resources/sap/m/images/dronning_victoria.jpg" class="sapUiSmallMarginTopBottom" />
+                                <List showSeparators="Inner">
+                                    <FeedListItem sender="{Author}" icon="{AuthorPicUrl}" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false" info="{Type}" timestamp="{Date}" text="{Text}" convertLinksToAnchorTags="All"/>
+                                </List>
+                            </VBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+
+        <uxap:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button type="Accept" press="fnOnSubmitRequest" icon="sap-icon://accept" visible="true" text="Submit Request" />
+                <Button type="Reject" press="fnOnCancelRequest" icon="sap-icon://cancel" visible="true" text="Cancel Request" />
+            </OverflowToolbar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+</mvc:View>
