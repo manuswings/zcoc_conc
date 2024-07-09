@@ -32,7 +32,22 @@
                 <Property Name="date_submitted" Type="Edm.DateTime" Nullable="true" sap:label="Date Submitted" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
                 <Property Name="date_requested" Type="Edm.DateTime" Nullable="true" sap:label="Date Requested" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
                 <Property Name="date_completed" Type="Edm.DateTime" Nullable="true" sap:label="Date Completed" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
+                <NavigationProperty Name="to_comment"
+                    Relationship="ZCOC_CONC_SRV.assoc_19791C382FB3EF499C620ECD9E881DE2"
+                    FromRole="FromRole_assoc_19791C382FB3EF499C620ECD9E881DE2"
+                    ToRole="ToRole_assoc_19791C382FB3EF499C620ECD9E881DE2"/>              
             </EntityType>
+            <EntityType Name="CommentType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="request_no"/>
+                    <PropertyRef Name="timestamp"/>       
+                </Key>
+                <Property Name="request_no" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Request No" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
+                <Property Name="timestamp" Type="Edm.DateTime" Nullable="true" sap:label="Date Submitted" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>                
+                <Property Name="text" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Technology Node" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
+                <Property Name="info" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Technology Node" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>                     
+                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
+            </EntityType>            
             <EntityType Name="F4TechnologyNodeType" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="technology_node"/>
@@ -60,13 +75,23 @@
                 </Key>
                 <Property Name="application" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Process Module" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
                 <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-            </EntityType>                                 
+            </EntityType> 
+            <Association Name="assoc_19791C382FB3EF499C620ECD9E881DE2"
+                sap:content-version="1">
+                <End Type="ZCOC_CONC_SRV.MasterType"
+                    Multiplicity="1"
+                    Role="FromRole_assoc_19791C382FB3EF499C620ECD9E881DE2"/>
+                <End Type="ZCOC_CONC_SRV.CommentType"
+                    Multiplicity="*"
+                    Role="ToRole_assoc_19791C382FB3EF499C620ECD9E881DE2"/>
+            </Association>                                         
             <EntityContainer Name="ZCOC_CONC_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
-                <EntitySet Name="MasterSet" EntityType="ZCOC_CONC_SRV.MasterType" sap:creatable="true" sap:updatable="true" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MasterSet" EntityType="ZCOC_CONC_SRV.MasterType" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:pageable="true" sap:content-version="1"/>
+                <EntitySet Name="CommentSet" EntityType="ZCOC_CONC_SRV.CommentType" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:pageable="true" sap:content-version="1"/>                    
                 <EntitySet Name="F4TechnologyNodeSet" EntityType="ZCOC_CONC_SRV.F4TechnologyNodeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="F4FabAndGeoRegionSet" EntityType="ZCOC_CONC_SRV.F4FabAndGeoRegionType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>           
                 <EntitySet Name="F4ProcessModuleSet" EntityType="ZCOC_CONC_SRV.F4ProcessModuleType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>       
-                <EntitySet Name="F4ApplicationSet" EntityType="ZCOC_CONC_SRV.F4ApplicationType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>                                    
+                <EntitySet Name="F4ApplicationSet" EntityType="ZCOC_CONC_SRV.F4ApplicationType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>                                                  
             </EntityContainer>
             <Annotation Term="Core.SchemaVersion" String="1.0.0"
                 xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
