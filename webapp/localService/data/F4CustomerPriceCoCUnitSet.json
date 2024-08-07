@@ -1,0 +1,10 @@
+[
+    {
+        "customer_price_coc_unit":"INR",
+        "description":"Indian Rupee"
+    },
+    {
+        "customer_price_coc_unit":"USD",
+        "description":"US Dollars"
+    }             
+]

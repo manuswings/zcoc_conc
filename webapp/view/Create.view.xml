@@ -34,7 +34,7 @@
                 <uxap:expandedHeading>
                     <VBox>
                         <Breadcrumbs currentLocationText="Raise CoC &amp; CoNC">
-                            <Link text="Back to Home"></Link>
+                            <Link text="Back to Home" press="handleBackToHome"></Link>
                         </Breadcrumbs>
                         <Title text="Create Request"
                             wrapping="true"
@@ -47,7 +47,7 @@
                     <VBox>
                         <Breadcrumbs currentLocationText="Raise CoC &amp; CoNC">
                             <Link text="Back to Home"
-                                press="fnGoToHome"></Link>
+                                press="handleBackToHome"></Link>
                         </Breadcrumbs>
                         <Title text="Create Request"
                             wrapping="true"
@@ -135,7 +135,6 @@
                                             <Label text="CoC Applicable Date"></Label>
                                         </smartform:label>
                                         <Select forceSelection="true"
-                                            placeholder="Select {/#MasterType/coc_applicable_quarter/@sap:label}"
                                             selectedKey="{coc_applicable_quarter}">
                                             <core:Item key="Q1"
                                                 text="Q1" />
@@ -147,7 +146,6 @@
                                                 text="Q4" />
                                         </Select>
                                         <Select forceSelection="true"
-                                            placeholder="Select {/#MasterType/coc_applicable_year/@sap:label}"
                                             selectedKey="{coc_applicable_year}">
                                             <core:Item key="2024"
                                                 text="2024" />
@@ -177,33 +175,30 @@
                                             entitySet="MasterSet" />
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
-                                        <smartmultiinput:SmartMultiInput placeholder="Please select {/#MasterType/fab_and_geo_region/@sap:label}"
+                                        <smartmultiinput:SmartMultiInput
                                             value="{fab_and_geo_region}"
                                             entitySet="MasterSet"
                                             selectedKey="{fab_and_geo_region}">
                                         </smartmultiinput:SmartMultiInput>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
-                                        <smartmultiinput:SmartMultiInput placeholder="Please select {/#MasterType/process_module/@sap:label}"
+                                        <smartmultiinput:SmartMultiInput 
                                             value="{process_module}"
                                             entitySet="MasterSet">
                                         </smartmultiinput:SmartMultiInput>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartmultiinput:SmartMultiInput value="{technology_node}"
-                                            placeholder="Please select {/#MasterType/technology_node/@sap:label}"
                                             entitySet="MasterSet">
                                         </smartmultiinput:SmartMultiInput>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartmultiinput:SmartMultiInput value="{application}"
-                                            placeholder="Please select {/#MasterType/application/@sap:label}"
                                             entitySet="MasterSet">
                                         </smartmultiinput:SmartMultiInput>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{competitive_benchmark}"
-                                            placeholder="Please enter {/#MasterType/competitive_benchmark/@sap:label}"
                                             entitySet="MasterSet"
                                             app:multiLineSettings="{cols: 50, rows: 3}" />
                                     </smartform:GroupElement>
@@ -222,16 +217,18 @@
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{partfamily_included_conc}"
-                                            placeholder="Please enter {/#MasterType/partfamily_included_conc/@sap:label}"
                                             entitySet="MasterSet"
                                             app:multiLineSettings="{cols: 50, rows: 3}"/>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{previous_commitment}"
-                                            placeholder="Please enter {/#MasterType/previous_commitment/@sap:label}"
                                             entitySet="MasterSet"
                                             app:multiLineSettings="{cols: 50, rows: 3}"/>
                                     </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartfield:SmartField value="{previous_request_reference}" 
+                                            entitySet="MasterSet" />
+                                    </smartform:GroupElement>                                    
                                 </smartform:Group>
                             </smartform:SmartForm>
                         </uxap:blocks>
@@ -283,10 +280,10 @@
                     <uxap:ObjectPageSubSection>
                         <uxap:blocks>
                             <VBox>
-                                <FeedInput post="onPostingComment"
+                                <FeedInput post="handleAddComment"
                                     icon="test-resources/sap/m/images/dronning_victoria.jpg"
                                     class="sapUiSmallMarginTopBottom" />
-                                <List showSeparators="Inner" items="CommentSet">
+                                <List showSeparators="Inner" items="CommentSet" id="CommentsFeed">
                                     <!-- <FeedListItem  sender="{description}"
                                         icon="sap-icon://employee"
                                         senderPress="onSenderPress"
@@ -308,12 +305,12 @@
             <OverflowToolbar>
                 <ToolbarSpacer />
                 <Button type="Accept"
-                    press="fnOnSubmitRequest"
+                    press="onSubmitRequest"
                     icon="sap-icon://accept"
                     visible="true"
                     text="Submit Request" />
                 <Button type="Reject"
-                    press="fnOnCancelRequest"
+                    press="onCancelRequest"
                     icon="sap-icon://cancel"
                     visible="true"
                     text="Cancel Request" />

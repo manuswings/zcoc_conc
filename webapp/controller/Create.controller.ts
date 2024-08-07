@@ -4,12 +4,15 @@ import Base from "./Base.controller";
 import ODataModel from "sap/ui/model/odata/v2/ODataModel";
 import Context from "sap/ui/model/Context";
 import Model from "sap/ui/model/Model";
+import List from "sap/m/List";
+import FeedListItem from "sap/m/FeedListItem";
+import DateFormat from "sap/ui/core/format/DateFormat";
 
 /**
  * @namespace lam.zcoc_conc.controller
  */
 export default class Create extends Base {
-    context : Context;
+    context: Context;
     /*eslint-disable @typescript-eslint/no-empty-function*/
     public onInit(): void {
         Base.prototype.onInit.apply(this);
@@ -75,18 +78,36 @@ export default class Create extends Base {
         this?.getView()?.setBindingContext(this.context);
     }
     //@reason : Lets add in a new entry to to_comment
-    public onPostingComment(): void {
-        (this?.getView()?.getModel() as ODataModel)?.createEntry("to_comment", {
+    public handleAddComment(e: any): void {
+        let oContext = ((this?.getView()?.getModel() as ODataModel)?.createEntry("to_comment", {
             context: this.context,
             properties: {
                 request_no: "10001",
-                timestamp: "/Date(1466268050000+0000)/",
-                text: "Comments are entered here!",
+                submitted_timestamp: DateFormat.getDateTimeWithTimezoneInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSS", strictParsing: true }).format(new Date()),
+                // submitted_timestamp: "/Date(1466268050000+0000)/",                
+                submitted_date: DateFormat.getDateTimeWithTimezoneInstance({ pattern: "yyyy-MM-dd", strictParsing: true }).format(new Date()),
+                submitted_time: DateFormat.getTimeInstance({pattern:"HHmmss"}).format(new Date()),  
+                text: e.getParameter('value'),
                 info: "Requestor",
-                description: "Manu Sebastin"
+                description: this.currentUserInfo.getFullName()
             }
-        });  
-        //Lets bind it to the view
-        (this?.getView()?.getModel() as ODataModel).refresh(true);            
+        }) as Context);
+        //Lets create feeditem
+        let oFeedListItem = new FeedListItem({
+            sender: "{description}",
+            // icon: "sap-icon://employee",
+            iconDensityAware: false,
+            iconDisplayShape:"Square",
+	        iconInitials:"DU",
+            iconSize:"S",
+            info: "{info}",
+            timestamp: "{ path : 'submitted_timestamp' , type : 'sap.ui.model.odata.type.DateTimeOffset' ,  formatOptions: { pattern: 'MMMM dd YYYY, h:mm:ss a', UTC: true }, constraints : { displayFormat : 'Date' } }",
+            text: "{text}",
+            convertLinksToAnchorTags: "All"
+        });
+        //lets bind the context the the list
+        oFeedListItem.setBindingContext(oContext);
+        //Add it to the existing list
+        (this?.getView()?.byId("CommentsFeed") as List).addItem(oFeedListItem);
     }
 }

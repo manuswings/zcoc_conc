@@ -1,0 +1,10 @@
+[
+    {
+        "lam_cost_coc_unit":"INR",
+        "description":"Indian Rupee"
+    },
+    {
+        "lam_cost_coc_unit":"USD",
+        "description":"US Dollars"
+    }             
+]

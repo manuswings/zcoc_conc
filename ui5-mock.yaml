@@ -28,13 +28,14 @@ server:
         delay: 300
     - name: ui5-tooling-transpile-middleware
       afterMiddleware: compression
-      configuration:
-        debug: true
+      configuration:   
         excludePatterns:
           - /Component-preload.js
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:
+        debug: true
+        watch: true           
         mountPath: /
         services:
           - urlPath: /sap/opu/odata/sap/ZCOC_CONC_SRV

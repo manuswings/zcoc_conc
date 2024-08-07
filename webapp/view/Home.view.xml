@@ -1,6 +1,9 @@
-<mvc:View xmlns:smartfield="sap.ui.comp.smartfield" controllerName="lam.zcoc_conc.controller.Home"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m" height="100%"
+<mvc:View xmlns:smartfield="sap.ui.comp.smartfield"
+    controllerName="lam.zcoc_conc.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    height="100%"
     xmlns:core="sap.ui.core"
     xmlns:filterbar="sap.ui.comp.filterbar"
     xmlns:unified="sap.ui.unified"
@@ -13,14 +16,28 @@
     xmlns:f="sap.f"
     xmlns:table="sap.ui.table"
     xmlns:uxap="sap.uxap">
-    <f:DynamicPage toggleHeaderOnTitleClick="false" id="page" preserveHeaderStateOnScroll="true">
+    <f:DynamicPage toggleHeaderOnTitleClick="false"
+        id="page"
+        preserveHeaderStateOnScroll="true">
         <f:header>
             <f:DynamicPageHeader pinnable="true">
                 <f:content>
-                    <smartvariants:SmartVariantManagement id="MasterVariant" persistencyKey="MasterVariant" />
-                    <smartFilterBar:SmartFilterBar id="MasterSet_Filter" showRestoreButton="true" persistencyKey="MasterFilter" smartVariant="MasterVariant" showFilterConfiguration="true" liveMode="true" entitySet="MasterSet" search="fnOnFilterChange" enableBasicSearch="false" header="CoC &amp; CoNC Request">
+                    <smartvariants:SmartVariantManagement id="MasterVariant"
+                        persistencyKey="MasterVariant"
+                        defaultVariantKey="manu"/>
+                    <smartFilterBar:SmartFilterBar id="MasterSet_Filter"
+                        showRestoreButton="true"
+                        persistencyKey="MasterFilter"
+                        smartVariant="MasterVariant"
+                        showFilterConfiguration="true"
+                        liveMode="true"
+                        entitySet="MasterSet"
+                        search="handleFilterChange"
+                        enableBasicSearch="false"
+                        header="CoC &amp; CoNC Request">
                         <smartFilterBar:controlConfiguration>
-                            <smartFilterBar:ControlConfiguration conditionPanelDefaultOperation="Contains" key="technology_node" >
+                            <smartFilterBar:ControlConfiguration conditionPanelDefaultOperation="Contains"
+                                key="technology_node">
 
                             </smartFilterBar:ControlConfiguration>
                         </smartFilterBar:controlConfiguration>
@@ -29,16 +46,38 @@
             </f:DynamicPageHeader>
         </f:header>
         <f:content>
-            <smartTable:SmartTable id="MasterSet_Table" smartFilterId="MasterSet_Filter" persistencyKey="MasterTable" smartVariant="MasterVariant" useVariantManagement="true" useTablePersonalisation="true" showTablePersonalisation="true" entitySet="MasterSet" tableType="ResponsiveTable" beforeExport="fnOnExcelExport" header="Request Count" showRowCount="true" enableAutoBinding="true" demandPopin="true" class="sapUiResponsiveContentPadding" showFullScreenButton="true" app:useSmartToggle="true" beforeRebindTable="onBeforeRebindTable">
+            <smartTable:SmartTable id="MasterSet_Table"
+                smartFilterId="MasterSet_Filter"
+                persistencyKey="MasterTable"
+                smartVariant="MasterVariant"
+                useVariantManagement="true"
+                useTablePersonalisation="true"
+                showTablePersonalisation="true"
+                entitySet="MasterSet"
+                tableType="ResponsiveTable"
+                beforeExport="onExcelExport"
+                header="Request Count"
+                showRowCount="true"
+                enableAutoBinding="true"
+                demandPopin="true"
+                class="sapUiResponsiveContentPadding"
+                showFullScreenButton="true"
+                app:useSmartToggle="true"
+                beforeRebindTable="handleOnBeforeRebindTable">
                 <smartTable:customToolbar >
                     <Toolbar>
                         <content>
                             <ToolbarSpacer></ToolbarSpacer>
-                            <Button text="New Request" type="Emphasized" press="fnOnPressNewRequest"></Button>
+                            <Button text="New Request"
+                                type="Emphasized"
+                                press="handlePressNewRequest"></Button>
                         </content>
                     </Toolbar>
                 </smartTable:customToolbar>
-                <m:Table sticky="ColumnHeaders,HeaderToolbar,InfoToolbar" select="_fnOnSelectMaster" rememberSelections="false" mode="SingleSelectMaster"></m:Table>
+                <m:Table sticky="ColumnHeaders,HeaderToolbar,InfoToolbar"
+                    selectionChange="handleSelectionChangeMasterTable"
+                    rememberSelections="false"
+                    mode="SingleSelectMaster"></m:Table>
             </smartTable:SmartTable>
         </f:content>
     </f:DynamicPage>

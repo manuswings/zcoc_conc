@@ -127,11 +127,18 @@
         },
         {
           "name": "RouteCreate",
-          "pattern": "Create",
+          "pattern": "create",
           "target": [
             "TargetCreate"
           ]
-        }        
+        },
+        {
+          "name": "RouteDisplay",
+          "pattern": "display/{request_no}",
+          "target": [
+            "TargetDisplay"
+          ]
+        }                 
       ],
       "targets": {
         "TargetHome": {
@@ -147,7 +154,14 @@
           "clearControlAggregation": false,
           "viewId": "Create",
           "viewName": "Create"
-        }        
+        },
+        "TargetDisplay": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Display",
+          "viewName": "Display"
+        }                  
       }
     },
     "rootView": {

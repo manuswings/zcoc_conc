@@ -10,71 +10,112 @@
                 <Key>
                     <PropertyRef Name="request_no"/>
                 </Key>
-                <Property Name="request_no" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Request No" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="customer" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Customer" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="request_status" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Request Status" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="time_elapsed" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Time Elapsed" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
+                <Property Name="request_no" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Request No" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="customer" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Customer" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="request_status" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Request Status" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="time_elapsed" Type="Edm.Int64" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Time Elapsed in Days" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
 
-                <Property Name="pg_csbg_bd_alignment" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="PG/CSBG BD Alignment" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="coc_applicable_quarter" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Applicable Quarter" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="coc_applicable_year" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Applicable Year" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="commitment_level" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Commitment Level" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="fab_and_geo_region" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Fab and Geo Region" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="process_module" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Process Module" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="technology_node" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Technology Node" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="application" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Application" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="competitive_benchmark" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Competitive Benchmark" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="conc_needed" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="CoNC Needed" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="partfamily_included_conc" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Key Non-cons Part families to be included in CoNC" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="previous_commitment" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Previous Node/Process Module CoC/CoNC Commitment" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
+                <Property Name="pg_csbg_bd_alignment" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="PG/CSBG BD Alignment" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="coc_applicable_quarter" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Applicable Quarter" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="coc_applicable_year" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Applicable Year" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="commitment_level" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Commitment Level" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="fab_and_geo_region" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Fab and Geo Region" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="process_module" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Process Module" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="technology_node" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Technology Node" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="application" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Application" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="competitive_benchmark" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Competitive Benchmark" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="conc_needed" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="CoNC Needed" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="partfamily_included_conc" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Key Non-cons Part families to be included in CoNC" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="previous_commitment" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Previous Node/Process Module CoC/CoNC Commitment" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="previous_request_reference" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Previous Request Reference" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
 
-                <Property Name="submitted_by" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Submitted By" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="date_submitted" Type="Edm.DateTime" Nullable="true" sap:label="Date Submitted" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="date_requested" Type="Edm.DateTime" Nullable="true" sap:label="Date Requested" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="date_completed" Type="Edm.DateTime" Nullable="true" sap:label="Date Completed" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
+                <Property Name="lam_cost_coc" Type="Edm.Decimal" Precision="14" Scale="3" sap:unicode="false" sap:label="Lam Cost CoC" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="lam_cost_coc_unit" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Lam Cost COC Unit" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>           
+                <Property Name="customer_price_coc" Type="Edm.Decimal" Precision="14" Scale="3" sap:unicode="false" sap:label="Customer Price CoC" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="customer_price_coc_unit" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Customer Price CoC Unit" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>                                
+
+                <Property Name="submitted_by" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Submitted By" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="date_submitted" Type="Edm.DateTime" Nullable="false" sap:label="Date Submitted" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="date_requested" Type="Edm.DateTime" Nullable="false" sap:label="Date Requested" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="date_completed" Type="Edm.DateTime" Nullable="false" sap:label="Date Completed" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
                 <NavigationProperty Name="to_comment"
                     Relationship="ZCOC_CONC_SRV.assoc_19791C382FB3EF499C620ECD9E881DE2"
                     FromRole="FromRole_assoc_19791C382FB3EF499C620ECD9E881DE2"
                     ToRole="ToRole_assoc_19791C382FB3EF499C620ECD9E881DE2"/>              
             </EntityType>
+            <EntityType Name="WorkflowType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="request_no"/>
+                    <PropertyRef Name="sequence"/>       
+                </Key>
+                <Property Name="request_no" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Request No" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true" sap:hierarchy-node-for="request_no"/>
+                <Property Name="parent_request_no" Type="Edm.String" Nullable="true" MaxLength="10" sap:unicode="false" sap:label="Request No" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true" sap:hierarchy-parent-node-for="request_no" />                
+                <Property Name="sequence" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sequence" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true" sap:hierarchy-node-for="sequence"/> 
+                <Property Name="parent_sequence" Type="Edm.String" Nullable="true" MaxLength="10" sap:unicode="false" sap:label="Parent Sequence" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true" sap:hierarchy-parent-node-for="sequence"/>                                
+                <Property Name="task_step" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Task Step" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>     
+                <Property Name="task_owner" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Task Owner" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>           
+                <Property Name="task_owner_role" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Task Owner Role" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>                             
+                <Property Name="task_completed" Type="Edm.DateTime" Nullable="true" sap:label="Task Completed Date" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>   
+                <Property Name="task_status" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Task Status" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/> 
+                <NavigationProperty Name="to_workflow"
+                    Relationship="ZCOC_CONC_SRV.assoc_19791C382FB3EF499C620ECD9E881DE3"
+                    FromRole="FromRole_assoc_19791C382FB3EF499C620ECD9E881DE3"
+                    ToRole="ToRole_assoc_19791C382FB3EF499C620ECD9E881DE3"/>                                    
+            </EntityType>              
             <EntityType Name="CommentType" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="request_no"/>
-                    <PropertyRef Name="timestamp"/>       
+                    <PropertyRef Name="submitted_timestamp"/>       
                 </Key>
-                <Property Name="request_no" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Request No" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="timestamp" Type="Edm.DateTime" Nullable="true" sap:label="Date Submitted" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>                
-                <Property Name="text" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Technology Node" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="info" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Technology Node" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>                     
-                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
+                <Property Name="request_no" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Request No" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>      
+                <Property Name="submitted_date" Type="Edm.Date" Nullable="true" sap:label="Submitted Date" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>   
+                <Property Name="submitted_time" Type="Edm.Time" Nullable="true" sap:label="Submitted Time" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/> 
+                <Property Name="submitted_timestamp" Type="Edm.DateTime" Nullable="true" sap:label="Date Submitted" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>                                                      
+                <Property Name="text" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Technology Node" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="info" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Technology Node" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>                     
+                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
             </EntityType>            
             <EntityType Name="F4TechnologyNodeType" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="technology_node"/>
                 </Key>
-                <Property Name="technology_node" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Technology Node" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
+                <Property Name="technology_node" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Technology Node" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
             </EntityType>
             <EntityType Name="F4FabAndGeoRegionType" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="fab_and_geo_region"/>
                 </Key>
-                <Property Name="fab_and_geo_region" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Fab and Geo Region" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
+                <Property Name="fab_and_geo_region" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Fab and Geo Region" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
             </EntityType>  
+            <EntityType Name="F4LamCostCoCUnitType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="lam_cost_coc_unit"/>
+                </Key>
+                <Property Name="lam_cost_coc_unit" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Lam Cost COC Unit" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>                  
+                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+            </EntityType>   
+            <EntityType Name="F4CustomerPriceCoCUnitType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="customer_price_coc_unit"/>
+                </Key>
+                <Property Name="customer_price_coc_unit" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Customer Price CoC Unit" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>                  
+                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+            </EntityType>                       
             <EntityType Name="F4ProcessModuleType" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="process_module"/>
                 </Key>
-                <Property Name="process_module" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Process Module" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
+                <Property Name="process_module" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Process Module" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
             </EntityType>   
             <EntityType Name="F4ApplicationType" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="application"/>
                 </Key>
-                <Property Name="application" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Process Module" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
-                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="false" sap:filterable="true"/>
+                <Property Name="application" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Process Module" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="description" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Description" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
             </EntityType> 
             <Association Name="assoc_19791C382FB3EF499C620ECD9E881DE2"
                 sap:content-version="1">
@@ -84,14 +125,26 @@
                 <End Type="ZCOC_CONC_SRV.CommentType"
                     Multiplicity="*"
                     Role="ToRole_assoc_19791C382FB3EF499C620ECD9E881DE2"/>
-            </Association>                                         
+            </Association>  
+            <Association Name="assoc_19791C382FB3EF499C620ECD9E881DE3"
+                sap:content-version="1">
+                <End Type="ZCOC_CONC_SRV.MasterType"
+                    Multiplicity="1"
+                    Role="FromRole_assoc_19791C382FB3EF499C620ECD9E881DE3"/>
+                <End Type="ZCOC_CONC_SRV.WorkflowType"
+                    Multiplicity="*"
+                    Role="ToRole_assoc_19791C382FB3EF499C620ECD9E881DE3"/>
+            </Association>                                                    
             <EntityContainer Name="ZCOC_CONC_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
                 <EntitySet Name="MasterSet" EntityType="ZCOC_CONC_SRV.MasterType" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:pageable="true" sap:content-version="1"/>
-                <EntitySet Name="CommentSet" EntityType="ZCOC_CONC_SRV.CommentType" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:pageable="true" sap:content-version="1"/>                    
+                <EntitySet Name="CommentSet" EntityType="ZCOC_CONC_SRV.CommentType" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:pageable="true" sap:content-version="1"/>  
+                <EntitySet Name="WorkflowSet" EntityType="ZCOC_CONC_SRV.WorkflowType" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:pageable="true" sap:content-version="1"/>                                   
                 <EntitySet Name="F4TechnologyNodeSet" EntityType="ZCOC_CONC_SRV.F4TechnologyNodeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="F4FabAndGeoRegionSet" EntityType="ZCOC_CONC_SRV.F4FabAndGeoRegionType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>           
                 <EntitySet Name="F4ProcessModuleSet" EntityType="ZCOC_CONC_SRV.F4ProcessModuleType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>       
-                <EntitySet Name="F4ApplicationSet" EntityType="ZCOC_CONC_SRV.F4ApplicationType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>                                                  
+                <EntitySet Name="F4ApplicationSet" EntityType="ZCOC_CONC_SRV.F4ApplicationType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>      
+                <EntitySet Name="F4CustomerPriceCoCUnitSet" EntityType="ZCOC_CONC_SRV.F4CustomerPriceCoCUnitType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/> 
+                <EntitySet Name="F4LamCostCoCUnitSet" EntityType="ZCOC_CONC_SRV.F4LamCostCoCUnitType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>                                                                             
             </EntityContainer>
             <Annotation Term="Core.SchemaVersion" String="1.0.0"
                 xmlns="http://docs.oasis-open.org/odata/ns/edm"/>

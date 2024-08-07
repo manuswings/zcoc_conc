@@ -3,6 +3,7 @@ import Base from "./Base.controller";
 import Event from "sap/ui/base/Event";
 import SmartFilterBar from "sap/ui/comp/smartfilterbar/SmartFilterBar";
 import FilterGroupItem from "sap/ui/comp/filterbar/FilterGroupItem";
+import Parameters from "sap/ui/core/theming/Parameters";
 
 /**
  * @namespace lam.zcoc_conc.controller
@@ -14,19 +15,32 @@ export default class Home extends Base {
         Base.prototype.onInit.apply(this);
     }
     // # --------------------------------------------------------------------------------- #
-    // # On selection of create request in the home page
-    // # Objective : Lets navigate to the detail page
+    // # On press of create request in the home page
+    // # Objective : Lets navigate to the create page
     // # --------------------------------------------------------------------------------- #	
-    public fnOnPressNewRequest(): void {
+    public handlePressNewRequest(): void {
         //Lets add in the logic for the navigation to the details page
         this.Router.navTo("RouteCreate");
 
     }
     // # --------------------------------------------------------------------------------- #
+    // # On selection of records in the home page
+    // # Objective : Lets navigate to the display page
+    // # --------------------------------------------------------------------------------- #	
+    public handleSelectionChangeMasterTable(e:any): void {
+        if (e.getParameter("listItem").getBindingContext().getProperty("request_no")) {
+            //Lets add in the logic for the navigation to the display page
+            this.Router.navTo("RouteDisplay",{"request_no":e.getParameter("listItem").getBindingContext().getProperty("request_no")});
+        } else {
+            //Lets notify the user
+
+        }
+    }    
+    // # --------------------------------------------------------------------------------- #
     // # On change of filter in the home page
     // # Objective : Lets make some filters as contains
     // # --------------------------------------------------------------------------------- #	
-    public fnOnFilterChange(e: Event): void {
+    public handleFilterChange(e: Event): void {
         interface FilteredData {
             items: Array<any> | undefined;
             ranges: Array<any> | undefined
@@ -36,7 +50,11 @@ export default class Home extends Base {
         // In order to do that lets transverse the strtucture
         for (var prop in oFilterData) {
             //if the items is available then lets clear the range
-            if (((oFilterData[prop] as FilteredData)?.items?.length)) {
+            
+            if (((oFilterData[prop] as FilteredData)?.items?.length)
+            //Issue with dropdown values in the filters, temp fix
+            || ( ( prop === 'process_module' || prop === 'technology_node' ) && ((oFilterData[prop] as FilteredData)?.items?.length) == 0 && (oFilterData[prop] as FilteredData).ranges )
+            ) {
                 (oFilterData[prop] as FilteredData).ranges = [];
             }
             //lets fill the ranges from the item
