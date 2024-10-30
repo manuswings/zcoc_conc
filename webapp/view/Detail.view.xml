@@ -1,0 +1,534 @@
+<mvc:View controllerName="lam.zcoc.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    height="100%"
+    xmlns:core="sap.ui.core"
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns:unified="sap.ui.unified"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:smartvariants="sap.ui.comp.smartvariants"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:m="sap.m"
+    xmlns:me="sap.me"
+    xmlns:f="sap.f"
+    xmlns:table="sap.ui.table"
+    xmlns:smartform="sap.ui.comp.smartform"
+    xmlns:uxap="sap.uxap"
+    xmlns:layout="sap.ui.layout"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:smartmultiinput="sap.ui.comp.smartmultiinput"
+    xmlns:upload="sap.m.upload"
+    xmlns:blockcolor="sap.blockcolor"
+    xmlns:suite="sap.suite.ui.commons">
+    <uxap:ObjectPageLayout showFooter="true"
+        showTitleInHeaderContent="true"
+        alwaysShowContentHeader="false"
+        preserveHeaderStateOnScroll="true"
+        headerContentPinnable="true"
+        isChildPage="true"
+        upperCaseAnchorBar="false">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:expandedHeading>
+                    <VBox>
+                        <Breadcrumbs currentLocationText="Raise CoC &amp; CoNC">
+                            <Link text="Back to Home"
+                                press="handleBackToHome"></Link>
+                        </Breadcrumbs>
+                        <Title text="{= ${view>/mode} === 'create' ? 'Create Request' : 'View Request - '.concat(${request_no})}"
+                            wrapping="true"
+                            class="sapUiSmallMarginEnd"/>
+                    </VBox>
+
+                </uxap:expandedHeading>
+
+                <uxap:snappedHeading>
+                    <VBox>
+                        <Breadcrumbs currentLocationText="Raise CoC &amp; CoNC">
+                            <Link text="Back to Home"
+                                press="handleBackToHome"></Link>
+                        </Breadcrumbs>
+                        <Title text="{= ${view>/mode} === 'create' ? 'Create Request' : 'View Request - '.concat(${request_no})}"
+                            wrapping="true"
+                            class="sapUiSmallMarginEnd"/>
+                    </VBox>
+                </uxap:snappedHeading>
+
+                <uxap:navigationActions>
+
+                </uxap:navigationActions>
+
+                <uxap:actions>
+                </uxap:actions>
+
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:headerContent>
+            <FlexBox wrap="Wrap"
+                fitContainer="true"
+                alignItems="Stretch">
+                <VBox justifyContent="Center"
+                    class="sapUiSmallMarginEnd">
+                    <Label text="Requested By"/>
+                    <Text text="{submitted_by_name} ({submitted_by})"/>
+                </VBox>
+                <VBox justifyContent="Center"
+                    class="sapUiSmallMarginEnd">
+                    <Label text="Submitted On"/>
+                    <Text text="{ path : 'date_submitted' , type : 'sap.ui.model.odata.type.DateTime',formatOptions : { pattern : 'MMM dd, yyyy', UTC : true } }"/>
+                </VBox>
+                <VBox justifyContent="Center"
+                    class="sapUiSmallMarginEnd">
+                    <Label text="Request Status"/>
+                    <Text text="{request_status_description}"/>
+                </VBox>
+            </FlexBox>
+        </uxap:headerContent>
+
+        <uxap:sections>
+            <uxap:ObjectPageSection title="Request Details"
+                titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <smartform:SmartForm entityType="ZCOC_DVType"
+                                editable="{= ${view>/mode} === 'create' ? true : ( ${role} === 'userrole' ?  true : false ) }"
+                                title="Request Details">
+                                <smartform:layout>
+                                    <smartform:ColumnLayout columnsM="1"
+                                        columnsL="3"
+                                        columnsXL="3"/>
+                                </smartform:layout>
+                                <smartform:Group>
+                                    <smartform:GroupElement>
+                                        <smartform:label>
+                                            <Label text="{/#ZCOC_DVType/pg_csbg_bd_alignment/@sap:label}"></Label>
+                                        </smartform:label>
+                                        <SegmentedButton selectedKey="{path:'pg_csbg_bd_alignment',type:'sap.ui.model.type.Boolean'}">
+                                            <items>
+                                                <SegmentedButtonItem text="Yes, Aligned"
+                                                    key="true"/>
+                                                <SegmentedButtonItem text="No"
+                                                    key="false" />
+                                            </items>
+                                        </SegmentedButton>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartfield:SmartField value="{date_requested}"
+                                            >
+                                            <smartfield:configuration>
+                                                <smartfield:Configuration controlType="datePicker"/>
+                                            </smartfield:configuration>
+                                        </smartfield:SmartField>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartform:label>
+                                            <Label text="CoC Applicable Date"></Label>
+                                        </smartform:label>
+                                        <Select forceSelection="true"
+                                            selectedKey="{applicable_quarter}">
+                                            <core:Item key="Q1"
+                                                text="Q1" />
+                                            <core:Item key="Q2"
+                                                text="Q2" />
+                                            <core:Item key="Q3"
+                                                text="Q3" />
+                                            <core:Item key="Q4"
+                                                text="Q4" />
+                                        </Select>
+                                        <Select forceSelection="true"
+                                            selectedKey="{applicable_year}">
+                                            <core:Item key="2024"
+                                                text="2024" />
+                                            <core:Item key="2023"
+                                                text="2023" />
+                                            <core:Item key="2022"
+                                                text="2022" />
+                                        </Select>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartform:label>
+                                            <Label text="{/#ZCOC_DVType/commitment_level/@sap:label}"></Label>
+                                        </smartform:label>
+                                        <SegmentedButton selectedKey="{path:'commitment_level',type:'sap.ui.model.type.Boolean'}">
+                                            <items>
+                                                <SegmentedButtonItem text="Binding"
+                                                    key="true"/>
+                                                <SegmentedButtonItem text="Non-Binding"
+                                                    key="false" />
+                                            </items>
+                                        </SegmentedButton>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartfield:SmartField value="{customer}"
+>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartmultiinput:SmartMultiInput value="{to_fg/fab_geo_reg}"
+                                            editable="true"
+                                            contextEditable="true"
+                                            selectionChange="handleOnSelectionChangeFG">
+                                        </smartmultiinput:SmartMultiInput>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartmultiinput:SmartMultiInput value="{to_pm/process_module}"
+                                            editable="true"
+                                            selectionChange="handleOnSelectionChangePM">
+                                        </smartmultiinput:SmartMultiInput>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartmultiinput:SmartMultiInput value="{to_tn/technology_node}"
+                                            editable="true"
+                                            selectionChange="handleOnSelectionChangeTN">
+                                        </smartmultiinput:SmartMultiInput>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartmultiinput:SmartMultiInput value="{to_ap/application}"
+                                            editable="true"
+                                            selectionChange="handleOnSelectionChangeAP">
+                                        </smartmultiinput:SmartMultiInput>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartfield:SmartField value="{competitive_benchmark}"
+                                            editable="true"
+                                            app:multiLineSettings="{cols: 50, rows: 3}" />
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartform:label>
+                                            <Label text="{/#ZCOC_DVType/conc_needed/@sap:label}"></Label>
+                                        </smartform:label>
+                                        <SegmentedButton selectedKey="{path:'conc_needed',type:'sap.ui.model.type.Boolean'}">
+                                            <items>
+                                                <SegmentedButtonItem text="Yes"
+                                                    key="true"/>
+                                                <SegmentedButtonItem text="No"
+                                                    key="false" />
+                                            </items>
+                                        </SegmentedButton>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartfield:SmartField value="{conc_partfamilies}"
+                                            editable="true"
+                                            app:multiLineSettings="{cols: 50, rows: 3}"/>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartfield:SmartField value="{previous_commitment}"
+                                            app:multiLineSettings="{cols: 50, rows: 3}"/>
+                                    </smartform:GroupElement>
+                                    <smartform:GroupElement >
+                                        <smartfield:SmartField value="{previous_request_reference}"
+                                            editable="true"/>
+                                    </smartform:GroupElement>
+                                </smartform:Group>
+                            </smartform:SmartForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Request Status"
+                visible="{= ${view>/mode} === 'create' ? false : true }"
+                titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <VBox>
+                                <suite:ProcessFlow scrollable="false"
+                                    headerPress="HandleHeaderPress">
+                                    <suite:nodes>
+                                    </suite:nodes>
+                                    <suite:lanes>
+                                        <suite:ProcessFlowLaneHeader laneId="0"
+                                            iconSrc="sap-icon://order-status"
+                                            text="Submitted"
+                                            position="0"
+                                            state='{= ( "Submitted" === ${request_status_description} ||
+                                                        "Request in Queue" === ${request_status_description} ||
+                                                        "PG Collecting Data" === ${request_status_description} ||
+                                                        "Spares Marketing Analysis in Progress" === ${request_status_description} ||
+                                                        "BD Review" === ${request_status_description} ||
+                                                        "AT Review" === ${request_status_description} ||
+                                                        "Completed" === ${request_status_description} ||
+                                                        "Rejected" === ${request_status_description}  ||
+                                                        "Cancelled" === ${request_status_description}  ) ? [{state: "Positive", value: 2}]  : [] }'/>
+                                        <suite:ProcessFlowLaneHeader laneId="0"
+                                            iconSrc="sap-icon://pending"
+                                            text="Request in Queue"
+                                            position="1"
+                                            state='{= (
+                                                        "Request in Queue" === ${request_status_description} ||
+                                                        "PG Collecting Data" === ${request_status_description} ||
+                                                        "Spares Marketing Analysis in Progress" === ${request_status_description} ||
+                                                        "BD Review" === ${request_status_description} ||
+                                                        "AT Review" === ${request_status_description} ||
+                                                        "Completed" === ${request_status_description} ||
+                                                        "Rejected" === ${request_status_description}  ||
+                                                        "Cancelled" === ${request_status_description}  ) ? [{state: "Positive", value: 2}]  : [] }'/>                                                        
+                                        <suite:ProcessFlowLaneHeader laneId="1"
+                                            iconSrc="sap-icon://sap-box"
+                                            text="PG Collecting Data"
+                                            position="2"
+                                            state='{= ( "PG Collecting Data" === ${request_status_description} ||
+                                                        "Spares Marketing Analysis in Progress" === ${request_status_description} ||
+                                                        "BD Review" === ${request_status_description} ||
+                                                        "AT Review" === ${request_status_description} ||
+                                                        "Completed" === ${request_status_description} ||
+                                                        "Rejected" === ${request_status_description}  ||
+                                                        "Cancelled" === ${request_status_description} ) ? [{state: "Positive", value: 2}]  : [] }'/>
+                                        <suite:ProcessFlowLaneHeader laneId="1"
+                                            iconSrc="sap-icon://collaborate"
+                                            text="Spares Marketing Analysis in Progress"
+                                            position="3"
+                                            state='{= ( "Spares Marketing Analysis in Progress" === ${request_status_description} ||
+                                                        "BD Review" === ${request_status_description} ||
+                                                        "AT Review" === ${request_status_description} ||
+                                                        "Completed" === ${request_status_description} ||
+                                                        "Rejected" === ${request_status_description}  ||
+                                                        "Cancelled" === ${request_status_description} ) ? [{state: "Positive", value: 2}]  : [] }'/>
+                                        <suite:ProcessFlowLaneHeader laneId="1"
+                                            iconSrc="sap-icon://learning-assistant"
+                                            text="BD Review"
+                                            position="4"
+                                            state='{= ( "BD Review" === ${request_status_description} ||
+                                                        "AT Review" === ${request_status_description} ||
+                                                        "Completed" === ${request_status_description} ||
+                                                        "Rejected" === ${request_status_description}  ||
+                                                        "Cancelled" === ${request_status_description} ) ? [{state: "Positive", value: 2}]  : [] }'/>
+                                        <suite:ProcessFlowLaneHeader laneId="1"
+                                            iconSrc="sap-icon://learning-assistant"
+                                            text="AT Review"
+                                            position="5"
+                                            state='{= ( "AT Review" === ${request_status_description} ||
+                                                        "Completed" === ${request_status_description} ||
+                                                        "Rejected" === ${request_status_description}  ||
+                                                        "Cancelled" === ${request_status_description} ) ? [{state: "Positive", value: 2}]  : [] }'/>
+                                        <suite:ProcessFlowLaneHeader laneId="1"
+                                            iconSrc="sap-icon://complete"
+                                            text="Completed"
+                                            position="6"
+                                            state='{= ( "Completed" === ${request_status_description} ||
+                                                        "Rejected" === ${request_status_description}  ||
+                                                        "Cancelled" === ${request_status_description} ) ? [{state: "Positive", value: 2}]  : [] }'/>
+                                        <suite:ProcessFlowLaneHeader laneId="1"
+                                            iconSrc="sap-icon://decline"
+                                            text="Rejected"
+                                            position="7"
+                                            state='{= ( "Rejected" === ${request_status_description} ||
+                                                        "Cancelled" === ${request_status_description}  ) ? [{state: "Positive", value: 2}]  : [] }'/>
+                                        <suite:ProcessFlowLaneHeader laneId="1"
+                                            iconSrc="sap-icon://cancel"
+                                            text="Cancelled"
+                                            position="8"
+                                            state='{= ( "Cancelled" === ${request_status_description} ) ? [{state: "Positive", value: 2}]  : [] }'/>
+                                    </suite:lanes>
+                                </suite:ProcessFlow>
+                            </VBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Workflow Log"
+                visible="{= ${view>/mode} === 'create' ? false : true }"
+                titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <smartTable:SmartTable useVariantManagement="false"
+                                useTablePersonalisation="false"
+                                showTablePersonalisation="false"
+                                tableBindingPath="to_apr"
+                                 entitySet="ZCOC_APR_DV"
+                                tableType="ResponsiveTable"
+                                beforeExport="onExcelExport"
+                                enableExport="false"
+                                header="Count"
+                                showRowCount="true"
+                                enableAutoBinding="true"
+                                demandPopin="true"
+                                class="sapUiResponsiveContentPadding"
+                                showFullScreenButton="false"
+                                app:useSmartToggle="true">
+                                <smartTable:customToolbar >
+                                    <Toolbar>
+                                        <content>
+                                            <ToolbarSpacer></ToolbarSpacer>
+                                            <Button text="Add Task"
+                                                type="Emphasized"
+                                                press="handleAddTask"></Button>
+                                        </content>
+                                    </Toolbar>
+                                </smartTable:customToolbar>
+                                <!-- <table:TreeTable enableColumnReordering="false"
+                                    selectionBehavior="RowOnly">
+                                    <table:columns>
+                                        <table:Column >
+                                            <m:Label text="{/#ZCOC_APR_DVType/sequence/@sap:label}"/>
+                                            <table:template>
+                                                <m:Text text="{sequence}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column width="auto">
+                                            <m:Label text="{/#ZCOC_APR_DVType/task_desc/@sap:label}"/>
+                                            <table:template>
+                                                <m:Text text="{task_desc}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column >
+                                            <m:Label text="{/#ZCOC_APR_DVType/assigned_to/@sap:label}"/>
+                                            <table:template>
+                                                <m:Text text="{assigned_to}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column >
+                                            <m:Label text="{/#ZCOC_APR_DVType/role/@sap:label}"/>
+                                            <table:template>
+                                                <m:Text text="{role}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column >
+                                            <m:Label text="{/#ZCOC_APR_DVType/approval_date/@sap:label}"/>
+                                            <table:template>
+                                                <m:Text text="{approval_date}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>    
+                                        <table:Column >
+                                            <m:Label text="{/#ZCOC_APR_DVType/approval_status/@sap:label}"/>
+                                            <table:template>
+                                                <m:Text text="{approval_status}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>                                                                                                                                                                                                     
+                                    </table:columns>
+                                </table:TreeTable> -->
+                            </smartTable:SmartTable>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                    <!-- <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <smartTable:SmartTable useVariantManagement="false" useTablePersonalisation="false" showTablePersonalisation="false" entitySet="WorkflowSet" tableType="ResponsiveTable" beforeExport="onExcelExport" enableExport="false" header="Assigned Task" showRowCount="true" enableAutoBinding="true" demandPopin="true" class="sapUiResponsiveContentPadding" showFullScreenButton="false" app:useSmartToggle="true">
+                                <smartTable:customToolbar >
+                                    <Toolbar>
+                                        <content>
+                                            <ToolbarSpacer></ToolbarSpacer>
+                                            <Button text="Add Task" type="Emphasized" press="handlePressNewRequest"></Button>
+                                        </content>
+                                    </Toolbar>
+                                </smartTable:customToolbar>
+                                <m:Table sticky="ColumnHeaders,HeaderToolbar,InfoToolbar" rememberSelections="false" mode="SingleSelectMaster"></m:Table>                                 
+                            </smartTable:SmartTable>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>                     -->
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Attachment"
+                titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <UploadCollection 
+                                id="DetailUploadCollection"
+                                noDataText="No files found."
+                                noDataDescription="Drop files to upload, or use the &quot;+&quot; button."
+                                uploadComplete="onUploadComplete"
+                                instantUpload="false"
+                                beforeUploadStarts="handleUploadCollectionOnBeforeUploadStart"
+                                uploadTerminated="onUploadTerminated"
+                                change="handleUploadCollectionOnChange"
+                                items="{ path: '/AttachmentSet', 
+                                        templateShareable: false }"
+                                uploadUrl="/sap/opu/odata/sap/ZCOC_SRV/AttachmentSet">
+                                <items>
+                                    <UploadCollectionItem visibleDelete="false"
+                                        visibleEdit="false"
+                                        fileName="{FileName}"
+                                        press="handleUploadCollectionItemOnDownloadFile"
+                                        url="/sap/opu/odata/sap/ZCOC_SRV/AttachmentSet(FileKey='{request_no}',FileName='{FileName}')/$value">
+                                        <attributes>
+                                            <m:ObjectAttribute title="Uploaded By"
+                                                text="{CreatedByName} ({CreatedBy})"/>
+                                            <m:ObjectAttribute title="Uploaded On"
+                                                text="{path : 'CreatedDate', type : 'sap.ui.model.odata.type.DateTime',formatOptions:{ pattern : 'MMM dd, yyyy', UTC : true },constraints:{ displayFormat : 'Date' } }"/>
+                                        </attributes>
+                                    </UploadCollectionItem>
+                                </items>
+                            </UploadCollection>
+                            <!-- <upload:UploadSet instantUpload="false" showIcons="true" uploadEnabled="true" terminationEnabled="true" fileTypes="txt,doc,png" maxFileNameLength="30" maxFileSize="200" mediaTypes="text/plain,application/msword,image/png" uploadUrl="/sap/opu/odata/sap/ZCOC_SRV/AttachmentSet" items="{path: '/AttachmentSet', templateShareable: false}" mode="SingleSelect" selectionChanged="onSelectionChange" afterItemRemoved="onAfterItemRemoved">
+                                <upload:toolbar>
+                                    <OverflowToolbar>
+                                        <ToolbarSpacer/>
+                                        <Button text="Upload selected" press="onUploadSelectedButton"/>
+                                        <Button text="Download selected" press="onDownloadSelectedButton"/>
+                                        <Button enabled="false" text="Upload a new version" press="onVersionUpload"/>
+                                        <upload:UploadSetToolbarPlaceholder />
+                                    </OverflowToolbar>
+                                </upload:toolbar>
+                                <upload:items>
+                                    <upload:UploadSetItem fileName="{fileName}" mediaType="{mediaType}" url="{url}" thumbnailUrl="{thumbnailUrl}" markers="{path: 'markers', templateShareable: false}" statuses="{path: 'statuses', templateShareable: false}" uploadState="{uploadState}">
+                                        <upload:markers>
+                                            <ObjectMarker type="{type}" visibility="{visibility}"/>
+                                        </upload:markers>
+                                        <upload:statuses>
+                                            <ObjectStatus title="{title}" text="{text}" state="{state}" icon="{icon}" active="{active}"/>
+                                        </upload:statuses>
+                                    </upload:UploadSetItem>
+                                </upload:items>
+                            </upload:UploadSet> -->
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <uxap:ObjectPageSection title="Comments"
+                titleUppercase="false">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <VBox>
+                                <FeedInput post="handleAddComment"
+                                    class="sapUiSmallMarginTopBottom" />
+                                <List showSeparators="Inner"
+                                    id="DetailCommentsFeed"
+                                    items="{to_cmt}">
+                                    <FeedListItem sender="{created_by}"
+                                        icon="sap-icon://employee"
+                                        senderPress="onSenderPress"
+                                        iconPress="onIconPress"
+                                        iconDensityAware="false"
+                                        info="{created_by}"
+                                        timestamp="{path : 'creation_date', type : 'sap.ui.model.odata.type.DateTime',formatOptions:{ pattern : 'MMM dd, yyyy', UTC : true },constraints:{ displayFormat : 'Date' } } {path : 'creation_time', type : 'sap.ui.model.odata.type.Time',formatOptions:{ pattern : 'h:mm a', UTC : true } }"
+                                        text="{comments}"
+                                        convertLinksToAnchorTags="All"/>
+                                </List>
+                            </VBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+        <uxap:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button type="Accept"
+                    press="handleOnApprove"
+                    icon="sap-icon://accept"
+                    visible="{= ${view>/mode} === 'display' ? true : false }"
+                    text="Approve Request" />
+                <Button type="Reject"
+                    press="handleOnReject"
+                    icon="sap-icon://cancel"
+                    visible="{= ${view>/mode} === 'display' ? true : false }"
+                    text="Reject Request" />
+                <Button type="Accept"
+                    press="handleOnSubmit"
+                    icon="sap-icon://accept"
+                    visible="{= ${view>/mode} === 'create' ? true : false }"
+                    text="Submit Request" />
+                <Button type="Reject"
+                    press="onCancelRequest"
+                    icon="sap-icon://cancel"
+                    visible="{= ${view>/mode} === 'create' ? true : false }"
+                    text="Cancel Request" />
+            </OverflowToolbar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+</mvc:View>

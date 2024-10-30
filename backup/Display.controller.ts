@@ -7,9 +7,11 @@ import Model from "sap/ui/model/Model";
 import List from "sap/m/List";
 import FeedListItem from "sap/m/FeedListItem";
 import DateFormat from "sap/ui/core/format/DateFormat";
+import SmartMultiInput from "sap/ui/comp/smartmultiinput/SmartMultiInput";
+import MultiComboBox from "sap/m/MultiComboBox";
 
 /**
- * @namespace lam.zcoc_conc.controller
+ * @namespace lam.zcoc.controller
  */
 export default class Display extends Base {
     context: Context;
@@ -47,7 +49,18 @@ export default class Display extends Base {
                 break;
         }
     }
+    // # --------------------------------------------------------------------------------- #
+    // # Updatting the selected keys
+    // # Objective : Lets this function update the selected keys
+    // # --------------------------------------------------------------------------------- #    
+    public handleUpdateSelectedKeys(e:any):void{
+        try {
+            ((e.getSource() as SmartMultiInput).getInnerControls()[0] as MultiComboBox).setSelectedKeys(e.getSource().getBindingContext().getObject('fab_geo_reg'));
+        } catch (error) {
+            
+        }
 
+    }
     // # --------------------------------------------------------------------------------- #
     // # Pattern Matched Function for the Display Page
     // # Objective : Lets this function handle the pattern matched
@@ -57,7 +70,12 @@ export default class Display extends Base {
         (this?.getView()?.getModel() as ODataModel).setDeferredGroups(["changes"]);
         if (e.getParameter('arguments')['request_no']) {
             //Lets bind it to the view
-            this?.getView()?.bindElement(`/MasterSet('${e.getParameter('arguments')['request_no']}')`);
+            this?.getView()?.bindElement({
+                path : `/ZCOC_DV('${e.getParameter('arguments')['request_no']}')`,
+                parameters: {
+                    // expand: 'to_process_module'
+                },
+            });
         } else {
             //Should tell the user that we are going back to home
             this.handleBackToHome();
@@ -65,14 +83,14 @@ export default class Display extends Base {
     }
 
     // # --------------------------------------------------------------------------------- #
-    // # Lets add in a new entry to to_comment
+    // # Lets add in a new entry to to_cmt
     // # Objective : Adding the object in context
     // # --------------------------------------------------------------------------------- #	    
     public handleAddComment(e: any): void {
         //Mapping the current context
         this.context = (this?.getView()?.getBindingContext() as Context);
         //Getting the context of the newly added comments
-        let oContext = ((this?.getView()?.getModel() as ODataModel)?.createEntry("to_comment", {
+        let oContext = ((this?.getView()?.getModel() as ODataModel)?.createEntry("to_cmt", {
             context: this.context,
             properties: {
                 request_no: "10001",

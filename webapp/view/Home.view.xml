@@ -1,5 +1,5 @@
 <mvc:View xmlns:smartfield="sap.ui.comp.smartfield"
-    controllerName="lam.zcoc_conc.controller.Home"
+    controllerName="lam.zcoc.controller.Home"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
@@ -22,38 +22,46 @@
         <f:header>
             <f:DynamicPageHeader pinnable="true">
                 <f:content>
-                    <smartvariants:SmartVariantManagement id="MasterVariant"
-                        persistencyKey="MasterVariant"
-                        defaultVariantKey="manu"/>
-                    <smartFilterBar:SmartFilterBar id="MasterSet_Filter"
+                    <smartvariants:SmartVariantManagement id="HeaderVariant"
+                        persistencyKey="HeaderVariant"
+                        defaultVariantKey="DefaultVariant"/>
+                    <smartFilterBar:SmartFilterBar id="ZCOC_DV_Filter"
                         showRestoreButton="true"
-                        persistencyKey="MasterFilter"
-                        smartVariant="MasterVariant"
+                        persistencyKey="HeaderFilter"
+                        smartVariant="HeaderVariant"
                         showFilterConfiguration="true"
                         liveMode="true"
-                        entitySet="MasterSet"
+                        entitySet="ZCOC_DV"
                         search="handleFilterChange"
                         enableBasicSearch="false"
                         header="CoC &amp; CoNC Request">
                         <smartFilterBar:controlConfiguration>
                             <smartFilterBar:ControlConfiguration conditionPanelDefaultOperation="Contains"
-                                key="technology_node">
-
+                                key="technology_node">                           
                             </smartFilterBar:ControlConfiguration>
+                            <smartFilterBar:ControlConfiguration conditionPanelDefaultOperation="Contains"
+                                key="application">                                                           
+                            </smartFilterBar:ControlConfiguration>
+                            <smartFilterBar:ControlConfiguration conditionPanelDefaultOperation="Contains"
+                                key="fab_geo_reg">                                                           
+                            </smartFilterBar:ControlConfiguration>    
+                            <smartFilterBar:ControlConfiguration conditionPanelDefaultOperation="Contains"
+                                key="process_module">                                                           
+                            </smartFilterBar:ControlConfiguration>                                                      
                         </smartFilterBar:controlConfiguration>
                     </smartFilterBar:SmartFilterBar>
                 </f:content>
             </f:DynamicPageHeader>
         </f:header>
         <f:content>
-            <smartTable:SmartTable id="MasterSet_Table"
-                smartFilterId="MasterSet_Filter"
+            <smartTable:SmartTable id="ZCOC_DV_Table"
+                smartFilterId="ZCOC_DV_Filter"
                 persistencyKey="MasterTable"
-                smartVariant="MasterVariant"
+                smartVariant="HeaderVariant"
                 useVariantManagement="true"
                 useTablePersonalisation="true"
                 showTablePersonalisation="true"
-                entitySet="MasterSet"
+                entitySet="ZCOC_DV"
                 tableType="ResponsiveTable"
                 beforeExport="onExcelExport"
                 header="Request Count"
@@ -77,7 +85,26 @@
                 <m:Table sticky="ColumnHeaders,HeaderToolbar,InfoToolbar"
                     selectionChange="handleSelectionChangeMasterTable"
                     rememberSelections="false"
-                    mode="SingleSelectMaster"></m:Table>
+                    mode="SingleSelectMaster">
+                    <!-- <m:columns>
+                        <m:Column>
+                            <m:customData>
+                                <core:CustomData key="p13nData" value='\{"columnKey": "to_process_module/process_module", 
+                                    "columnIndex": 5, 
+                                     "content": \{ 
+                                        "SmartMultiInput": \{ 
+                                            "value": "{ZCOC_DV/to_process_module}", 
+                                            "valueHelpRequest": \{path: "ZC_COC_F4_PROCESS_MOD"}
+                                                            }
+                                                },
+                                     "leadingProperty": "to_process_module/process_module", 
+                                     "sortProperty": "to_process_module/process_module", 
+                                     }' />
+                            </m:customData>
+                            <Text text="Process Module" />
+                        </m:Column>
+                    </m:columns> -->
+                </m:Table>
             </smartTable:SmartTable>
         </f:content>
     </f:DynamicPage>

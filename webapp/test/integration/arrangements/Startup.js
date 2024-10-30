@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Opa5) {
 	"use strict";
 
-	return Opa5.extend("lam.zcoc_conc.test.integration.arrangements.Startup", {
+	return Opa5.extend("lam.zcoc.test.integration.arrangements.Startup", {
 
 		iStartMyApp: function (oOptionsParameter) {
 			var oOptions = oOptionsParameter || {};
@@ -14,7 +14,7 @@ sap.ui.define([
 			// start the app UI component
 			this.iStartMyUIComponent({
 				componentConfig: {
-					name: "lam.zcoc_conc",
+					name: "lam.zcoc",
 					async: true
 				},
 				hash: oOptions.hash,

@@ -1,0 +1,269 @@
+            <Annotations Target="SAP.ZC_COC_HEADERType">
+                <Annotation Term="UI.TextArrangement"
+                    EnumMember="UI.TextArrangementType/TextFirst" />
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>customer</PropertyPath>
+                        <PropertyPath>to_process_module/process_module</PropertyPath>
+                        <PropertyPath>to_fab_geo_region/fab_geo_reg</PropertyPath>                        
+                        <PropertyPath>technology_node</PropertyPath>
+                        <PropertyPath>request_status</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="request_no" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="customer" />
+                        </Record>
+                        <!-- <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="to_process_module/process_module" />
+                        </Record> -->
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="technology_node" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="application" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="date_submitted" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="date_requested" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="time_elapsed" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="request_status" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>                   
+            <Annotations Target="SAP.ZC_COC_PM_DATAType">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>to_header/customer</PropertyPath>
+                        <PropertyPath>process_module</PropertyPath>
+                        <PropertyPath>to_header/technology_node</PropertyPath>
+                        <PropertyPath>to_header/request_status</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="request_no" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="to_header/customer" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="process_module" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="to_header/technology_node" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="to_header/application" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="to_header/date_submitted" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="to_header/date_requested" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="to_header/time_elapsed" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="to_header/request_status" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>                
+            <!-- to_process_module/Process Module -->
+            <Annotations Target="ZCOC_SRV.ZC_COC_PM_DATAType/process_module">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath"
+                            String="ZC_COC_F4_PROCESS_MOD" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="process_module" />
+                                    <PropertyValue Property="ValueListProperty" String="process_module" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="description" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="FetchValues"
+                            Int="1" />
+                    </Record>
+                </Annotation>
+            </Annotations>            
+            <!-- Technology Node             -->
+            <Annotations Target="SAP.ZC_COC_HEADERType/technology_node">         
+                <Annotation Term="Common.Text"
+                    Path="description">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextFirst" />
+                </Annotation>             
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="ZC_COC_F4_TECH_NOD" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="technology_node" />
+                                    <PropertyValue Property="ValueListProperty" String="technology_node" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="description" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZCOC_SRV.ZC_COC_HEADERType/competitive_benchmark">
+                <Annotation Term="com.sap.vocabularies.UI.v1.MultiLineText" />
+            </Annotations>
+            <Annotations Target="ZCOC_SRV.ZC_COC_HEADERType/partfamily_included_conc">
+                <Annotation Term="com.sap.vocabularies.UI.v1.MultiLineText" />
+            </Annotations>
+            <Annotations Target="ZCOC_SRV.ZC_COC_HEADERType/previous_commitment">
+                <Annotation Term="com.sap.vocabularies.UI.v1.MultiLineText" />
+            </Annotations>
+            <Annotations Target="ZCOC_SRV.ZC_COC_F4_FAB_GEO_REGType">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="fab_geo_reg" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="description" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZCOC_SRV.ZC_COC_HEADERType/lam_cost_coc_unit">
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="lam_cost_coc_unit" />
+                                    <PropertyValue Property="ValueListProperty" String="lam_cost_coc_unit" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="description" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZCOC_SRV.ZC_COC_F4_PROCESS_MODType">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="process_module" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="description" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <!-- <Annotations Target="ZCOC_SRV.">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="customer_price_coc_unit" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="description" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations> -->
+
+            <Annotations Target="ZCOC_SRV.ZC_COC_HEADERType/application">
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="ZC_COC_F4_APPLICATION" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="application" />
+                                    <PropertyValue Property="ValueListProperty" String="application" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="description" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZCOC_SRV.ZC_COC_HEADERType/previous_request_reference">
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="false"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="ZCOC_DV" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="previous_request_reference" />
+                                    <PropertyValue Property="ValueListProperty" String="request_no" />
+                                </Record>
+
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="request_no" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="customer" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="process_module" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="technology_node" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="application" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="time_elapsed" />          
+                                </Record> 
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZCOC_SRV.ZC_COC_F4_APPLICATIONType">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="application" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="description" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>

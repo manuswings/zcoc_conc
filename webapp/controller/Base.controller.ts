@@ -1,10 +1,11 @@
+import BusyDialog from "sap/m/BusyDialog";
 import Router from "sap/m/routing/Router";
 import UIComponent from "sap/ui/core/UIComponent";
 import Controller from "sap/ui/core/mvc/Controller";
 import Container from "sap/ushell/Container";
 
 /**
- * @namespace lam.zcoc_conc.controller
+ * @namespace lam.zcoc.controller
  */
 export default class Base extends Controller {
 
@@ -19,11 +20,16 @@ export default class Base extends Controller {
         }
     }
     Router: Router;
+    BusyDialog: BusyDialog;
     /*eslint-disable @typescript-eslint/no-empty-function*/
     public onInit(this: any): void {
         this.Router = (this?.getView()?.getController().getOwnerComponent() as UIComponent).getRouter();
         //Fetching the curren user details
         this.getCurrentUser();
+        // Adding the busy Indicator
+        this.BusyDialog = new BusyDialog({
+            dependents:this
+        });
     }
 
     public handleBackToHome(): void {

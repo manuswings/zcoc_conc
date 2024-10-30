@@ -1,0 +1,433 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+    Version="4.0">
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1"
+            Alias="Common" />
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1"
+            Alias="UI" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core"
+            Namespace="Org.OData.Core.V1" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+        <edmx:Include Alias="Capabilities"
+            Namespace="Org.OData.Capabilities.V1" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation"
+            Namespace="Org.OData.Validation.V1" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml">
+        <edmx:Include Alias="Aggregation"
+            Namespace="Org.OData.Aggregation.V1" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Analytics.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1"
+            Alias="Analytics" />
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/sap/ZCOC_SRV/$metadata">
+        <edmx:Include Namespace="ZCOC_SRV"
+            Alias="SAP" />
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm"
+            Namespace="lam.ZCOC.ZCOC_SRV">
+            <Annotations Target="ZCOC_SRV.ZCOC_DVType">
+                <Annotation Term="UI.TextArrangement"
+                    EnumMember="UI.TextArrangementType/TextFirst" />
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>request_no</PropertyPath>
+                        <PropertyPath>customer</PropertyPath>
+                        <PropertyPath>request_status</PropertyPath>
+                        <PropertyPath>applicable_year</PropertyPath>
+                        <PropertyPath>applicable_quarter</PropertyPath>
+                        <PropertyPath>pg_csbg_bd_alignment</PropertyPath>
+                        <PropertyPath>date_requested</PropertyPath>
+                        <PropertyPath>commitment_level</PropertyPath>
+                        <PropertyPath>conc_needed</PropertyPath>
+                        <PropertyPath>time_elapsed</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="request_no" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="customer" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="applicable_year" />
+                        </Record>  
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="applicable_quarter" />
+                        </Record>                                              
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="date_submitted" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="date_requested" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="time_elapsed" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="request_status" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>   
+            <!-- hiding it from the selection field -->
+            <Annotations Target="ZCOC_SRV.ZCOC_DVType/current_user_id">
+                <Annotation Term="UI.HiddenFilter"
+                    Bool="true"/>
+                <Annotation Term="UI.Hidden"
+                    Bool="true"/>
+            </Annotations>     
+            <Annotations Target="ZCOC_SRV.ZCOC_DVType/user_action">
+                <Annotation Term="UI.HiddenFilter"
+                    Bool="true"/>
+                <Annotation Term="UI.Hidden"
+                    Bool="true"/>                    
+            </Annotations>   
+            <Annotations Target="ZCOC_SRV.ZCOC_DVType/role">
+                <Annotation Term="UI.HiddenFilter"
+                    Bool="true"/>
+                <Annotation Term="UI.Hidden"
+                    Bool="true"/>                    
+            </Annotations>
+            <Annotations Target="ZCOC_SRV.ZCOC_DVType/wf_task_id">
+                <Annotation Term="UI.HiddenFilter"
+                    Bool="true"/>
+                <Annotation Term="UI.Hidden"
+                    Bool="true"/>                    
+            </Annotations>                                             
+            <!-- F4 ~ Customer -->
+            <Annotations Target="SAP.ZCOC_DVType/customer">
+                <Annotation Term="Common.Text"
+                    Path="customer_desc">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextOnly" />                        
+                </Annotation>            
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                       <PropertyValue Property="DistinctValuesSupported"
+                            Bool="true" />                       
+                        <PropertyValue Property="CollectionPath"
+                            String="ZCOC_F4_CUS_DV" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">                               
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="customer" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="customer_grp" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">                               
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="current_user_id" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="user_id" />
+                                </Record>                                
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="customer_desc" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>             
+            <!-- Approval   -->
+            <Annotations Target="SAP.ZCOC_APR_DVType">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="sequence" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="task_desc" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="approval_sent_date" />
+                        </Record>                        
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="assigned_to" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="role" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="approval_date" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="approval_status" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>  
+            <!-- Approval, Status   -->
+            <Annotations Target="SAP.ZCOC_APR_DVType/approval_status">
+                <Annotation Term="Common.Text"
+                    Path="role_desciption">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextOnly" />                        
+                </Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                       <PropertyValue Property="DistinctValuesSupported"
+                            Bool="true" />                       
+                        <PropertyValue Property="CollectionPath"
+                            String="ZCOC_F4_ST_DV" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="approval_status" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="request_status" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="description" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>                
+            </Annotations>  
+            <!-- Approval, Role   -->
+            <Annotations Target="SAP.ZCOC_APR_DVType/role">
+                <Annotation Term="Common.Text"
+                    Path="role_desciption">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextOnly" />
+                </Annotation>
+            </Annotations>                            
+            <!-- F4 ~ Reference Request Number -->
+            <Annotations Target="ZCOC_SRV.ZCOC_DVType/previous_request_reference">
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="false"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="ZCOC_DV" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="previous_request_reference" />
+                                    <PropertyValue Property="ValueListProperty" String="request_no" />
+                                </Record>
+
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="request_no" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="customer" />
+                                </Record>
+                                <!-- <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="process_module" />
+                                </Record>                                
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="technology_node" />          
+                                </Record>    
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="application" />
+                                </Record> -->
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="date_submitted" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="date_requested" />
+                                </Record>                                
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="time_elapsed" />          
+                                </Record> 
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>    
+            <Annotations Target="SAP.ZCOC_DVType/to_fg/fab_geo_reg">
+                <Annotation Term="Common.ValueListWithFixedValues"
+                    Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                       <PropertyValue Property="DistinctValuesSupported"
+                            Bool="true" />                       
+                        <PropertyValue Property="CollectionPath"
+                            String="ZCOC_F4_FG_DV" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="request_status" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="fab_geo_reg" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="description" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>                     
+            <!-- F4 ~ Process Module -->
+            <Annotations Target="SAP.ZCOC_PM_DVType/process_module">
+                <Annotation Term="Common.Text"
+                    Path="process_module_description">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextOnly" />
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues"
+                    Bool="true"/>           
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath"
+                            String="ZCOC_F4_PM_DV" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="process_module" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="process_module" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="description" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <!-- F4 ~ Status -->
+            <Annotations Target="SAP.ZCOC_DVType/request_status">
+                <Annotation Term="Common.Text"
+                    Path="request_status_description">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextOnly" />
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues"
+                    Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                       <PropertyValue Property="DistinctValuesSupported"
+                            Bool="true" />                       
+                        <PropertyValue Property="CollectionPath"
+                            String="ZCOC_F4_ST_DV" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="request_status" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="request_status" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="description" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>            
+            <!-- F4 ~ Technology Node -->
+            <Annotations Target="SAP.ZCOC_TN_DVType/technology_node">
+                <Annotation Term="Common.Text"
+                    Path="technology_node_description">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextOnly" />
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues"
+                    Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath"
+                            String="ZCOC_F4_TN_DV" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="technology_node" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="technology_node" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="description" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <!-- F4 ~ Fab & Geo -->
+            <Annotations Target="SAP.ZCOC_FG_DVType/fab_geo_reg">
+                <Annotation Term="Common.Text"
+                    Path="fab_geo_reg_description">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextOnly" />
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues"
+                    Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath"
+                            String="ZCOC_F4_FG_DV" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="fab_geo_reg" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="fab_geo_reg" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="description" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <!-- F4 ~ Application -->
+            <Annotations Target="SAP.ZCOC_AP_DVType/application">
+                <Annotation Term="Common.Text"
+                    Path="application_description">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextOnly" />
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues"
+                    Bool="true"/>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath"
+                            String="ZCOC_F4_AP_DV" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="application" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="application" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="description" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>       
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

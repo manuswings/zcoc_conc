@@ -2,7 +2,7 @@
 
 specVersion: "3.1"
 metadata:
-  name: lam.zcoc_conc
+  name: lam.zcoc
 type: application
 server:
   customMiddleware:
@@ -35,7 +35,7 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
-        component: lam.zcoc_conc
+        component: lam.zcoc
         ui5Theme: sap_horizon
 builder:
   customTasks:

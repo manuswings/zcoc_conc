@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"lamzcoc_conc/zcoc_conc/controller/Home.controller"
+	"lamzcoc/zcoc/controller/Home.controller"
 ], function (Controller) {
 	"use strict";
 

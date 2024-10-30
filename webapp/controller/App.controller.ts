@@ -1,7 +1,7 @@
 import Controller from "sap/ui/core/mvc/Controller";
 
 /**
- * @namespace lam.zcoc_conc.controller
+ * @namespace lam.zcoc.controller
  */
 export default class App extends Controller {
 

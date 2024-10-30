@@ -1,6 +1,6 @@
 [
     {
-        "request_no": "900001",
+        "request_no": "1000000001",
         "customer": "Samsung",
         "request_status": "Request Submitted",
         "time_elapsed": 3,
@@ -8,8 +8,8 @@
         "coc_applicable_quarter": "3",
         "coc_applicable_year": "2024",
         "commitment_level": "Binding",
-        "fab_and_geo_region": "F10 Singapore,F12 India",
-        "process_module": "Flex HX, Transistors",
+        "process_module":"Flex HX",
+        "fab_geo_reg": "F10 Singapore,F12 India",
         "technology_node":"Samsung V6, Micron 130s",
         "application": "Plug, Channel Hole",
         "competitive_benchmark": "Competition against XYZ CoO $30/wfr, Need to offer - $35/wfr to win",
@@ -21,13 +21,13 @@
         "date_requested": "/Date(1563295250000+0000)/",
         "date_completed": "/Date(1573663250000+0000)/",
         "__metadata": {
-            "id": "/sap/opu/odata/sap/ZCOC_CONC_SRV/MasterSet('request_n0')",
-            "uri": "/sap/opu/odata/sap/ZCOC_CONC_SRV/MasterSet('request_n0')",
-            "type": "ZCOC_CONC_SRV.MasterType"
+            "id": "/sap/opu/odata/sap/ZCOC_SRV/ZCOC_DV('1000000001')",
+            "uri": "/sap/opu/odata/sap/ZCOC_SRV/ZCOC_DV('1000000001')",
+            "type": "ZCOC_SRV.ZC_COC_HEADERType"
         }
     },
     {
-        "request_no": "900002",
+        "request_no": "1000000002",
         "customer": "Samsung Korea",
         "request_status": "PG Collecting Data",
         "time_elapsed": 34,
@@ -35,8 +35,8 @@
         "coc_applicable_quarter": "3",
         "coc_applicable_year": "2024",
         "commitment_level": "Binding",
-        "fab_and_geo_region": "F10 Singapore,F12 India",
-        "process_module": "Flex RX",
+        "process_module":"Flex HX",        
+        "fab_geo_reg": "F10 Singapore,F12 India",
         "technology_node":"Samsung V8, Micron 140s",
         "application": "Plug, Channel Hole",
         "competitive_benchmark": "Competition against XYZ CoO $30/wfr, Need to offer - $35/wfr to win",
@@ -48,13 +48,13 @@
         "date_requested": "/Date(1563295250000+0000)/",
         "date_completed": "/Date(1573663250000+0000)/",
         "__metadata": {
-            "id": "/sap/opu/odata/sap/ZCOC_CONC_SRV/MasterSet('request_n0')",
-            "uri": "/sap/opu/odata/sap/ZCOC_CONC_SRV/MasterSet('request_n0')",
-            "type": "ZCOC_CONC_SRV.MasterType"
+            "id": "/sap/opu/odata/sap/ZCOC_SRV/ZCOC_DV('1000000002')",
+            "uri": "/sap/opu/odata/sap/ZCOC_SRV/ZCOC_DV('1000000002')",
+            "type": "ZCOC_SRV.ZC_COC_HEADERType"
         }
     },
     {
-        "request_no": "700003",
+        "request_no": "1000000003",
         "customer": "Samsung India",
         "request_status": "Spares Marketing Analysis in Progress",
         "time_elapsed": "2",
@@ -62,8 +62,8 @@
         "coc_applicable_quarter": "3",
         "coc_applicable_year": "2024",
         "commitment_level": "Binding",
-        "fab_and_geo_region": "F10 Singapore,F12 India",
-        "process_module": "Flex RX",
+        "process_module":"Flex HX",        
+        "fab_geo_reg": "F10 Singapore,F12 India",
         "technology_node":"Samsung V8, Micron 140s",
         "application": "Plug, Channel Hole",
         "competitive_benchmark": "Competition against XYZ CoO $30/wfr, Need to offer - $35/wfr to win",
@@ -75,13 +75,13 @@
         "date_requested": "/Date(1563295250000+0000)/",
         "date_completed": "/Date(1573663250000+0000)/",
         "__metadata": {
-            "id": "/sap/opu/odata/sap/ZCOC_CONC_SRV/MasterSet('request_n0')",
-            "uri": "/sap/opu/odata/sap/ZCOC_CONC_SRV/MasterSet('request_n0')",
-            "type": "ZCOC_CONC_SRV.MasterType"
+            "id": "/sap/opu/odata/sap/ZCOC_SRV/ZCOC_DV('1000000003')",
+            "uri": "/sap/opu/odata/sap/ZCOC_SRV/ZCOC_DV('1000000003')",
+            "type": "ZCOC_SRV.ZC_COC_HEADERType"
         }
     },
     {
-        "request_no": "600004",
+        "request_no": "1000000004",
         "customer": "Samsung SEA",
         "request_status": "BD Review",
         "time_elapsed": 34,
@@ -89,8 +89,8 @@
         "coc_applicable_quarter": "4",
         "coc_applicable_year": "2024",
         "commitment_level": "Binding",
-        "fab_and_geo_region": "F10 Singapore,F12 India",
-        "process_module": "Flex RX",
+        "process_module":"Flex HX",        
+        "fab_geo_reg": "F10 Singapore,F12 India",
         "technology_node":"Samsung V8, Micron 140s",
         "application": "Plug, Channel Hole",
         "competitive_benchmark": "Competition against XYZ CoO $30/wfr, Need to offer - $35/wfr to win",
@@ -102,13 +102,13 @@
         "date_requested": "/Date(1563295250000+0000)/",
         "date_completed": "/Date(1573663250000+0000)/",
         "__metadata": {
-            "id": "/sap/opu/odata/sap/ZCOC_CONC_SRV/MasterSet('request_n0')",
-            "uri": "/sap/opu/odata/sap/ZCOC_CONC_SRV/MasterSet('request_n0')",
-            "type": "ZCOC_CONC_SRV.MasterType"
+            "id": "/sap/opu/odata/sap/ZCOC_SRV/ZCOC_DV('1000000004')",
+            "uri": "/sap/opu/odata/sap/ZCOC_SRV/ZCOC_DV('1000000004')",
+            "type": "ZCOC_SRV.ZC_COC_HEADERType"
         }
     },
     {
-        "request_no": "650005",
+        "request_no": "1000000005",
         "customer": "Samsung EA",
         "request_status": "AT Review",
         "time_elapsed": 19,
@@ -116,8 +116,8 @@
         "coc_applicable_quarter": "3",
         "coc_applicable_year": "2024",
         "commitment_level": "Binding",
-        "fab_and_geo_region": "F10 Singapore,F12 India",
-        "process_module": "Flex RX",
+        "process_module":"Flex HX",        
+        "fab_geo_reg": "F10 Singapore,F12 India",
         "technology_node":"Samsung V8, Micron 140s",
         "application": "Plug, Channel Hole",
         "competitive_benchmark": "Competition against XYZ CoO $30/wfr, Need to offer - $35/wfr to win",
@@ -129,13 +129,13 @@
         "date_requested": "/Date(1563295250000+0000)/",
         "date_completed": "/Date(1573663250000+0000)/",
         "__metadata": {
-            "id": "/sap/opu/odata/sap/ZCOC_CONC_SRV/MasterSet('request_n0')",
-            "uri": "/sap/opu/odata/sap/ZCOC_CONC_SRV/MasterSet('request_n0')",
-            "type": "ZCOC_CONC_SRV.MasterType"
+            "id": "/sap/opu/odata/sap/ZCOC_SRV/ZCOC_DV('1000000005')",
+            "uri": "/sap/opu/odata/sap/ZCOC_SRV/ZCOC_DV('1000000005')",
+            "type": "ZCOC_SRV.ZC_COC_HEADERType"
         }
     },
     {
-        "request_no": "760006",
+        "request_no": "1000000006",
         "customer": "Samsung China",
         "request_status": "Completed",
         "time_elapsed": 2,
@@ -143,8 +143,8 @@
         "coc_applicable_quarter": "3",
         "coc_applicable_year": "2024",
         "commitment_level": "Binding",
-        "fab_and_geo_region": "F10 Singapore,F12 India",
-        "process_module": "Flex RX",
+        "process_module":"Flex HX",        
+        "fab_geo_reg": "F10 Singapore,F12 India",
         "technology_node":"Samsung V8, Micron 140s",
         "application": "Plug, Channel Hole",
         "competitive_benchmark": "Competition against XYZ CoO $30/wfr, Need to offer - $35/wfr to win",
@@ -156,9 +156,9 @@
         "date_requested": "/Date(1563295250000+0000)/",
         "date_completed": "/Date(1573663250000+0000)/",
         "__metadata": {
-            "id": "/sap/opu/odata/sap/ZCOC_CONC_SRV/MasterSet('request_n0')",
-            "uri": "/sap/opu/odata/sap/ZCOC_CONC_SRV/MasterSet('request_n0')",
-            "type": "ZCOC_CONC_SRV.MasterType"
+            "id": "/sap/opu/odata/sap/ZCOC_SRV/ZCOC_DV('1000000006')",
+            "uri": "/sap/opu/odata/sap/ZCOC_SRV/ZCOC_DV('1000000006')",
+            "type": "ZCOC_SRV.ZC_COC_HEADERType"
         }
     }                    
 ]

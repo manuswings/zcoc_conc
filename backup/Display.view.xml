@@ -1,4 +1,4 @@
-<mvc:View controllerName="lam.zcoc_conc.controller.Display"
+<mvc:View controllerName="lam.zcoc.controller.Display"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
@@ -22,8 +22,7 @@
     xmlns:upload="sap.m.upload"
     xmlns:suite="sap.suite.ui.commons"
     xmlns:blockcolor="sap.blockcolor">
-    <uxap:ObjectPageLayout id="ObjectPageLayout"
-        showFooter="true"
+    <uxap:ObjectPageLayout showFooter="true"
         showTitleInHeaderContent="true"
         alwaysShowContentHeader="false"
         preserveHeaderStateOnScroll="true"
@@ -97,7 +96,7 @@
                     <uxap:ObjectPageSubSection>
                         <uxap:blocks>
                             <smartform:SmartForm editTogglable="false"
-                                entityType="ZCOC_CONC_SRV.MasterType"
+                                entityType="ZCOC_DVType"
                                 title="Request Details"
                                 editable="true">
                                 <smartform:layout>
@@ -108,7 +107,7 @@
                                 <smartform:Group>
                                     <smartform:GroupElement>
                                         <smartform:label>
-                                            <Label text="{/#MasterType/pg_csbg_bd_alignment/@sap:label}"></Label>
+                                            <Label text="{/#ZCOC_DVType/pg_csbg_bd_alignment/@sap:label}"></Label>
                                         </smartform:label>
                                         <SegmentedButton selectedKey="{pg_csbg_bd_alignment}">
                                             <items>
@@ -118,7 +117,7 @@
                                                     key="No" />
                                             </items>
                                         </SegmentedButton>
-                                        <!-- <smartfield:SmartField value="{pg_csbg_bd_alignment}" entitySet="MasterSet">
+                                        <!-- <smartfield:SmartField value="{pg_csbg_bd_alignment}" entitySet="ZCOC_DV">
                                             <smartfield:configuration>
                                                 <smartfield:Configuration controlType="selection" displayBehaviour="OnOff" />
                                             </smartfield:configuration>
@@ -126,7 +125,7 @@
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{date_requested}"
-                                            entitySet="MasterSet">
+                                            entitySet="ZCOC_DV">
                                             <smartfield:configuration>
                                                 <smartfield:Configuration controlType="datePicker"/>
                                             </smartfield:configuration>
@@ -159,7 +158,7 @@
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartform:label>
-                                            <Label text="{/#MasterType/commitment_level/@sap:label}"></Label>
+                                            <Label text="{/#ZCOC_DVType/commitment_level/@sap:label}"></Label>
                                         </smartform:label>
                                         <SegmentedButton selectedKey="{commitment_level}">
                                             <items>
@@ -174,43 +173,48 @@
                                         <smartfield:SmartField value="{customer}"
                                             editable="false"
                                             contextEditable="false"
-                                            entitySet="MasterSet" />
+                                            entitySet="ZCOC_DV" />
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
-                                        <!-- <smartfield:SmartField value="{fab_and_geo_region}" entitySet="MasterSet">
+                                        <!-- <smartfield:SmartField value="{fab_geo_reg}" entitySet="ZCOC_DV">
                                             <smartfield:configuration>
                                                 <smartfield:Configuration controlType="auto" displayBehaviour="OnOff" />
                                             </smartfield:configuration>
                                         </smartfield:SmartField>                                     -->
-                                        <!-- <Text text="{fab_and_geo_region}" visible="true" /> -->
-                                        <smartmultiinput:SmartMultiInput value="{fab_and_geo_region}"
-                                            entitySet="MasterSet"
-                                            selectedKey="{fab_and_geo_region}">
+                                        <!-- <Text text="{fab_geo_reg}" visible="true" /> -->
+                                        <smartmultiinput:SmartMultiInput value="{fab_geo_reg}"
+                                            modelContextChange=".handleUpdateSelectedKeys"
+                                            entitySet="ZCOC_DV">
                                         </smartmultiinput:SmartMultiInput>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
+                                        <!-- <smartfield:SmartField value="{to_process_module/process_module}" entitySet="ZCOC_DV">
+                                            <smartfield:configuration>
+                                                <smartfield:Configuration controlType="auto" displayBehaviour="OnOff" />
+                                            </smartfield:configuration>
+                                        </smartfield:SmartField>                                                                         -->
                                         <smartmultiinput:SmartMultiInput value="{process_module}"
-                                            entitySet="MasterSet">
+                                            entitySet="ZCOC_DV">
                                         </smartmultiinput:SmartMultiInput>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartmultiinput:SmartMultiInput value="{technology_node}"
-                                            entitySet="MasterSet">
+                                            entitySet="ZCOC_DV">
                                         </smartmultiinput:SmartMultiInput>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartmultiinput:SmartMultiInput value="{application}"
-                                            entitySet="MasterSet">
+                                            entitySet="ZCOC_DV">
                                         </smartmultiinput:SmartMultiInput>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{competitive_benchmark}"
-                                            entitySet="MasterSet"
+                                            entitySet="ZCOC_DV"
                                             app:multiLineSettings="{cols: 50, rows: 3}" />
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartform:label>
-                                            <Label text="{/#MasterType/conc_needed/@sap:label}"></Label>
+                                            <Label text="{/#ZCOC_DVType/conc_needed/@sap:label}"></Label>
                                         </smartform:label>
                                         <SegmentedButton selectedKey="{conc_needed}">
                                             <items>
@@ -223,17 +227,17 @@
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{partfamily_included_conc}"
-                                            entitySet="MasterSet"
+                                            entitySet="ZCOC_DV"
                                             app:multiLineSettings="{cols: 50, rows: 3}"/>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{previous_commitment}"
-                                            entitySet="MasterSet"
+                                            entitySet="ZCOC_DV"
                                             app:multiLineSettings="{cols: 50, rows: 3}"/>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{previous_request_reference}"
-                                            entitySet="MasterSet" />
+                                            entitySet="ZCOC_DV" />
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{lam_cost_coc}"
@@ -241,7 +245,7 @@
                                                         "BD Review" === ${request_status} ||
                                                         "AT Review" === ${request_status} ||
                                                         "Completed" === ${request_status} ) ? true  : false }'
-                                            entitySet="MasterSet" />
+                                            entitySet="ZCOC_DV" />
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{lam_cost_coc_unit}"
@@ -249,7 +253,7 @@
                                                         "BD Review" === ${request_status} ||
                                                         "AT Review" === ${request_status} ||
                                                         "Completed" === ${request_status} ) ? true  : false }'
-                                            entitySet="MasterSet" />
+                                            entitySet="ZCOC_DV" />
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{customer_price_coc}"
@@ -257,7 +261,7 @@
                                                         "BD Review" === ${request_status} ||
                                                         "AT Review" === ${request_status} ||
                                                         "Completed" === ${request_status} ) ? true  : false }'
-                                            entitySet="MasterSet" />
+                                            entitySet="ZCOC_DV" />
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{customer_price_coc_unit}"
@@ -265,7 +269,7 @@
                                                         "BD Review" === ${request_status} ||
                                                         "AT Review" === ${request_status} ||
                                                         "Completed" === ${request_status} ) ? true  : false }'
-                                            entitySet="MasterSet" />
+                                            entitySet="ZCOC_DV" />
                                     </smartform:GroupElement>
                                 </smartform:Group>
                                 <!-- <smartform:Group>                                                 
@@ -385,7 +389,7 @@
                             <smartTable:SmartTable useVariantManagement="false"
                                 useTablePersonalisation="false"
                                 showTablePersonalisation="false"
-                                entitySet="WorkflowSet"
+                                entitySet=""
                                 tableType="TreeTable"
                                 beforeExport="onExcelExport"
                                 enableExport="false"
@@ -406,7 +410,7 @@
                                 </smartTable:customToolbar> -->
                                 <table:TreeTable enableColumnReordering="false"
                                     selectionBehavior="RowOnly">
-                                    <table:columns>                                 
+                                    <table:columns>
                                         <!-- <table:Column >
                                             <m:Label text="{/#WorkflowType/sequence/@sap:label}"/>
                                             <table:template>
@@ -443,27 +447,14 @@
                                                 <m:Text text="{task_status}" wrapping="false" />
                                             </table:template>
                                         </table:Column>                                                                                                                                                                                                      -->
-                                    </table:columns>                                    
-                                    </table:TreeTable>                                 
+                                    </table:columns>
+                                </table:TreeTable>
                             </smartTable:SmartTable>
                         </uxap:blocks>
                     </uxap:ObjectPageSubSection>
                     <!-- <uxap:ObjectPageSubSection>
                         <uxap:blocks>
-                            <smartTable:SmartTable useVariantManagement="false"
-                                useTablePersonalisation="false"
-                                showTablePersonalisation="false"
-                                entitySet="WorkflowSet"
-                                tableType="ResponsiveTable"
-                                beforeExport="onExcelExport"
-                                enableExport="false"
-                                header="Assigned Task"
-                                showRowCount="true"
-                                enableAutoBinding="true"
-                                demandPopin="true"
-                                class="sapUiResponsiveContentPadding"
-                                showFullScreenButton="false"
-                                app:useSmartToggle="true">
+                            <smartTable:SmartTable useVariantManagement="false" useTablePersonalisation="false" showTablePersonalisation="false" entitySet="WorkflowSet" tableType="ResponsiveTable" beforeExport="onExcelExport" enableExport="false" header="Assigned Task" showRowCount="true" enableAutoBinding="true" demandPopin="true" class="sapUiResponsiveContentPadding" showFullScreenButton="false" app:useSmartToggle="true">
                                 <smartTable:customToolbar >
                                     <Toolbar>
                                         <content>
@@ -472,9 +463,7 @@
                                         </content>
                                     </Toolbar>
                                 </smartTable:customToolbar>
-                                <m:Table sticky="ColumnHeaders,HeaderToolbar,InfoToolbar"
-                                    rememberSelections="false"
-                                    mode="SingleSelectMaster"></m:Table>                                 
+                                <m:Table sticky="ColumnHeaders,HeaderToolbar,InfoToolbar" rememberSelections="false" mode="SingleSelectMaster"></m:Table>                                 
                             </smartTable:SmartTable>
                         </uxap:blocks>
                     </uxap:ObjectPageSubSection>                     -->
@@ -490,9 +479,16 @@
                                     icon="test-resources/sap/m/images/dronning_victoria.jpg"
                                     class="sapUiSmallMarginTopBottom" />
                                 <List showSeparators="Inner"
-                                    items="CommentSet"
-                                    id="CommentsFeed">
-                                    <!-- <FeedListItem sender="{description}" icon="sap-icon://employee" senderPress="onSenderPress" iconPress="onIconPress" iconDensityAware="false" info="{info}" timestamp="{timestamp}" text="{text}" convertLinksToAnchorTags="All"/> -->
+                                    items="ZCOC_CMT_DV">
+                                    <FeedListItem sender="{created_by}"
+                                        icon="sap-icon://employee"
+                                        senderPress="onSenderPress"
+                                        iconPress="onIconPress"
+                                        iconDensityAware="false"
+                                        info="{info}"
+                                        timestamp="{creation_date}{creation_time}"
+                                        text="{comments}"
+                                        convertLinksToAnchorTags="All"/>
                                 </List>
                             </VBox>
                         </uxap:blocks>

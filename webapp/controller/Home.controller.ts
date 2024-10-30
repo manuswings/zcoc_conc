@@ -6,7 +6,7 @@ import FilterGroupItem from "sap/ui/comp/filterbar/FilterGroupItem";
 import Parameters from "sap/ui/core/theming/Parameters";
 
 /**
- * @namespace lam.zcoc_conc.controller
+ * @namespace lam.zcoc.controller
  */
 export default class Home extends Base {
 
@@ -14,6 +14,12 @@ export default class Home extends Base {
     public onInit(): void {
         Base.prototype.onInit.apply(this);
     }
+    // # --------------------------------------------------------------------------------- #
+    // # On before binding the smart table
+    // # Objective : Lets handle the dataset before the binding
+    // # --------------------------------------------------------------------------------- #	
+    public handleOnBeforeRebindTable(e:any): void {
+    }    
     // # --------------------------------------------------------------------------------- #
     // # On press of create request in the home page
     // # Objective : Lets navigate to the create page

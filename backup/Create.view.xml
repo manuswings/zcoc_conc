@@ -1,4 +1,4 @@
-<mvc:View controllerName="lam.zcoc_conc.controller.Create"
+<mvc:View controllerName="lam.zcoc.controller.Create"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
@@ -21,8 +21,7 @@
     xmlns:smartmultiinput="sap.ui.comp.smartmultiinput"
     xmlns:upload="sap.m.upload"
     xmlns:blockcolor="sap.blockcolor">
-    <uxap:ObjectPageLayout id="ObjectPageLayout"
-        showFooter="true"
+    <uxap:ObjectPageLayout showFooter="true"
         showTitleInHeaderContent="true"
         alwaysShowContentHeader="false"
         preserveHeaderStateOnScroll="true"
@@ -34,7 +33,8 @@
                 <uxap:expandedHeading>
                     <VBox>
                         <Breadcrumbs currentLocationText="Raise CoC &amp; CoNC">
-                            <Link text="Back to Home" press="handleBackToHome"></Link>
+                            <Link text="Back to Home"
+                                press="handleBackToHome"></Link>
                         </Breadcrumbs>
                         <Title text="Create Request"
                             wrapping="true"
@@ -94,10 +94,9 @@
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection>
                         <uxap:blocks>
-                            <smartform:SmartForm editTogglable="false"
-                                entityType="ZCOC_CONC_SRV.MasterType"
-                                title="Request Details"
-                                editable="true">
+                            <smartform:SmartForm entityType="ZCOC_DVType"
+                                editable="true"
+                                title="Request Details">
                                 <smartform:layout>
                                     <smartform:ColumnLayout columnsM="1"
                                         columnsL="3"
@@ -106,25 +105,21 @@
                                 <smartform:Group>
                                     <smartform:GroupElement>
                                         <smartform:label>
-                                            <Label text="{/#MasterType/pg_csbg_bd_alignment/@sap:label}"></Label>
+                                            <Label text="{/#ZCOC_DVType/pg_csbg_bd_alignment/@sap:label}"></Label>
                                         </smartform:label>
-                                        <SegmentedButton selectedKey="{pg_csbg_bd_alignment}">
+                                        <SegmentedButton selectedKey="{path:'pg_csbg_bd_alignment',formatter:'.formatter_boolean'}">
                                             <items>
                                                 <SegmentedButtonItem text="Yes, Aligned"
-                                                    key="Yes"/>
+                                                    key="true"/>
                                                 <SegmentedButtonItem text="No"
-                                                    key="No" />
+                                                    key="false" />
                                             </items>
                                         </SegmentedButton>
-                                        <!-- <smartfield:SmartField value="{pg_csbg_bd_alignment}" entitySet="MasterSet">
-                                            <smartfield:configuration>
-                                                <smartfield:Configuration controlType="selection" displayBehaviour="OnOff" />
-                                            </smartfield:configuration>
-                                        </smartfield:SmartField> -->
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{date_requested}"
-                                            entitySet="MasterSet">
+                                            entitySet="ZCOC_DV"
+                                            editable="true">
                                             <smartfield:configuration>
                                                 <smartfield:Configuration controlType="datePicker"/>
                                             </smartfield:configuration>
@@ -135,7 +130,7 @@
                                             <Label text="CoC Applicable Date"></Label>
                                         </smartform:label>
                                         <Select forceSelection="true"
-                                            selectedKey="{coc_applicable_quarter}">
+                                            selectedKey="{applicable_quarter}">
                                             <core:Item key="Q1"
                                                 text="Q1" />
                                             <core:Item key="Q2"
@@ -146,7 +141,7 @@
                                                 text="Q4" />
                                         </Select>
                                         <Select forceSelection="true"
-                                            selectedKey="{coc_applicable_year}">
+                                            selectedKey="{applicable_year}">
                                             <core:Item key="2024"
                                                 text="2024" />
                                             <core:Item key="2023"
@@ -157,14 +152,14 @@
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartform:label>
-                                            <Label text="{/#MasterType/commitment_level/@sap:label}"></Label>
+                                            <Label text="{/#ZCOC_DVType/commitment_level/@sap:label}"></Label>
                                         </smartform:label>
-                                        <SegmentedButton selectedKey="{commitment_level}">
+                                        <SegmentedButton selectedKey="{path:'commitment_level',formatter:'.formatter_boolean'}">
                                             <items>
                                                 <SegmentedButtonItem text="Binding"
-                                                    key="Binding"/>
+                                                    key="true"/>
                                                 <SegmentedButtonItem text="Non-Binding"
-                                                    key="Non-Binding" />
+                                                    key="false" />
                                             </items>
                                         </SegmentedButton>
                                     </smartform:GroupElement>
@@ -172,63 +167,69 @@
                                         <smartfield:SmartField value="{customer}"
                                             editable="false"
                                             contextEditable="false"
-                                            entitySet="MasterSet" />
+                                            entitySet="ZCOC_DV" />
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
-                                        <smartmultiinput:SmartMultiInput
-                                            value="{fab_and_geo_region}"
-                                            entitySet="MasterSet"
-                                            selectedKey="{fab_and_geo_region}">
+                                        <smartmultiinput:SmartMultiInput value="{to_fg/fab_geo_reg}"
+                                            editable="true"
+                                            contextEditable="true"
+                                            selectionChange="handleOnSelectionChangeFG">
                                         </smartmultiinput:SmartMultiInput>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
-                                        <smartmultiinput:SmartMultiInput 
-                                            value="{process_module}"
-                                            entitySet="MasterSet">
+                                        <smartmultiinput:SmartMultiInput value="{to_pm/process_module}"
+                                            editable="true"
+                                            entitySet="ZCOC_DV"
+                                            selectionChange="handleOnSelectionChangePM">
                                         </smartmultiinput:SmartMultiInput>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
-                                        <smartmultiinput:SmartMultiInput value="{technology_node}"
-                                            entitySet="MasterSet">
+                                        <smartmultiinput:SmartMultiInput value="{to_tn/technology_node}"
+                                            editable="true"
+                                            entitySet="ZCOC_DV"
+                                            selectionChange="handleOnSelectionChangeTN">
                                         </smartmultiinput:SmartMultiInput>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
-                                        <smartmultiinput:SmartMultiInput value="{application}"
-                                            entitySet="MasterSet">
+                                        <smartmultiinput:SmartMultiInput value="{to_ap/application}"
+                                            editable="true"
+                                            entitySet="ZCOC_DV"
+                                            selectionChange="handleOnSelectionChangeAP">
                                         </smartmultiinput:SmartMultiInput>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{competitive_benchmark}"
-                                            entitySet="MasterSet"
+                                            entitySet="ZCOC_DV"
+                                            editable="true"
                                             app:multiLineSettings="{cols: 50, rows: 3}" />
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartform:label>
-                                            <Label text="{/#MasterType/conc_needed/@sap:label}"></Label>
+                                            <Label text="{/#ZCOC_DVType/conc_needed/@sap:label}"></Label>
                                         </smartform:label>
-                                        <SegmentedButton selectedKey="{conc_needed}">
+                                        <SegmentedButton selectedKey="{path:'conc_needed',formatter:'.formatter_boolean'}">
                                             <items>
                                                 <SegmentedButtonItem text="Yes"
-                                                    key="Yes"/>
+                                                    key="true"/>
                                                 <SegmentedButtonItem text="No"
-                                                    key="No" />
+                                                    key="false" />
                                             </items>
                                         </SegmentedButton>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
-                                        <smartfield:SmartField value="{partfamily_included_conc}"
-                                            entitySet="MasterSet"
+                                        <smartfield:SmartField value="{conc_partfamilies}" editable="true"
+                                            entitySet="ZCOC_DV"
                                             app:multiLineSettings="{cols: 50, rows: 3}"/>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
                                         <smartfield:SmartField value="{previous_commitment}"
-                                            entitySet="MasterSet"
+                                            entitySet="ZCOC_DV"
                                             app:multiLineSettings="{cols: 50, rows: 3}"/>
                                     </smartform:GroupElement>
                                     <smartform:GroupElement >
-                                        <smartfield:SmartField value="{previous_request_reference}" 
-                                            entitySet="MasterSet" />
-                                    </smartform:GroupElement>                                    
+                                        <smartfield:SmartField value="{previous_request_reference}" editable="true"
+                                            entitySet="ZCOC_DV" />
+                                    </smartform:GroupElement>
                                 </smartform:Group>
                             </smartform:SmartForm>
                         </uxap:blocks>
@@ -241,35 +242,63 @@
                 <uxap:subSections>
                     <uxap:ObjectPageSubSection>
                         <uxap:blocks>
-                            <upload:UploadSet instantUpload="true"
-                                showIcons="true"
-                                uploadEnabled="true"
-                                terminationEnabled="true"
-                                fileTypes="txt,doc,png"
-                                maxFileNameLength="30"
-                                maxFileSize="200"
-                                mediaTypes="text/plain,application/msword,image/png"
-                                mode="MultiSelect"
-                                selectionChanged="onSelectionChange">
-                                <upload:toolbar>
-                                    <OverflowToolbar>
-                                        <ToolbarSpacer/>
-                                        <Button id="uploadSelectedButton"
-                                            text="Upload selected"
-                                            press="onUploadSelectedButton"/>
-                                        <Button id="downloadSelectedButton"
-                                            text="Download selected"
-                                            press="onDownloadSelectedButton"/>
-                                        <Button id="versionButton"
-                                            enabled="false"
-                                            text="Upload a new version"
-                                            press="onVersionUpload"/>
-                                        <upload:UploadSetToolbarPlaceholder />
-                                    </OverflowToolbar>
-                                </upload:toolbar>
-                                <upload:items>
-                                </upload:items>
-                            </upload:UploadSet>
+		<upload:UploadSet
+				id="UploadSet"
+				instantUpload="true"
+				showIcons="true"
+				uploadEnabled="true"
+				terminationEnabled="true"
+				fileTypes="txt,doc,png"
+				maxFileNameLength="30"
+				maxFileSize="200"
+				mediaTypes="text/plain,application/msword,image/png"
+				uploadUrl="../../../../upload"
+				items="{path: '/items', templateShareable: false}"
+				mode="MultiSelect"
+				selectionChanged="onSelectionChange"
+				afterItemRemoved="onAfterItemRemoved">
+			<upload:toolbar>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<Button
+							text="Upload selected"
+							press="onUploadSelectedButton"/>
+					<Button
+							text="Download selected"
+							press="onDownloadSelectedButton"/>
+					<Button
+
+							enabled="false"
+							text="Upload a new version"
+							press="onVersionUpload"/>
+					<upload:UploadSetToolbarPlaceholder />
+				</OverflowToolbar>
+			</upload:toolbar>
+			<upload:items>
+				<upload:UploadSetItem
+						fileName="{fileName}"
+						mediaType="{mediaType}"
+						url="{url}"
+						thumbnailUrl="{thumbnailUrl}"
+						markers="{path: 'markers', templateShareable: false}"
+						statuses="{path: 'statuses', templateShareable: false}"
+						uploadState="{uploadState}">
+					<upload:markers>
+						<ObjectMarker
+								type="{type}"
+								visibility="{visibility}"/>
+					</upload:markers>
+					<upload:statuses>
+						<ObjectStatus
+								title="{title}"
+								text="{text}"
+								state="{state}"
+								icon="{icon}"
+								active="{active}"/>
+					</upload:statuses>
+				</upload:UploadSetItem>
+			</upload:items>
+		</upload:UploadSet>
                         </uxap:blocks>
                     </uxap:ObjectPageSubSection>
                 </uxap:subSections>
@@ -283,16 +312,17 @@
                                 <FeedInput post="handleAddComment"
                                     icon="test-resources/sap/m/images/dronning_victoria.jpg"
                                     class="sapUiSmallMarginTopBottom" />
-                                <List showSeparators="Inner" items="CommentSet" id="CommentsFeed">
-                                    <!-- <FeedListItem  sender="{description}"
+                                <List showSeparators="Inner" id="CreateCommentsFeed"
+                                    items="{to_cmt}">
+                                    <FeedListItem sender="{created_by}"
                                         icon="sap-icon://employee"
                                         senderPress="onSenderPress"
                                         iconPress="onIconPress"
                                         iconDensityAware="false"
-                                        info="{info}"
-                                        timestamp="{timestamp}"
-                                        text="{text}"
-                                        convertLinksToAnchorTags="All"/> -->
+                                        info="{created_by}"
+                                        timestamp="{creation_date} {creation_time}"
+                                        text="{comments}"
+                                        convertLinksToAnchorTags="All"/>
                                 </List>
                             </VBox>
                         </uxap:blocks>
@@ -305,7 +335,7 @@
             <OverflowToolbar>
                 <ToolbarSpacer />
                 <Button type="Accept"
-                    press="onSubmitRequest"
+                    press="handleOnSubmit"
                     icon="sap-icon://accept"
                     visible="true"
                     text="Submit Request" />

@@ -40,7 +40,7 @@ sap.ui.define([
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
 									"title": "CoC &amp; CoNC Application",
-									"targetURL": "#zcoc_conc-display"
+									"targetURL": "#zcoc-display"
 								}
 							}]
 						}]
@@ -51,8 +51,8 @@ sap.ui.define([
 				"adapter": {
 					"config": {
 						"inbounds": {
-							"zcoc_conc-display": {
-								"semanticObject": "zcoc_conc",
+							"zcoc-display": {
+								"semanticObject": "zcoc",
 								"action": "display",
 								"description": "CoC &amp; CoNC Application",
 								"title": "CoC &amp; CoNC Application",
@@ -61,8 +61,8 @@ sap.ui.define([
 								},
 								"resolutionResult": {
 									"applicationType": "SAPUI5",
-									"additionalInformation": "SAPUI5.Component=lam.zcoc_conc",
-									"url": sap.ui.require.toUrl("lam/zcoc_conc")
+									"additionalInformation": "SAPUI5.Component=lam.zcoc",
+									"url": sap.ui.require.toUrl("lam/zcoc")
 								}
 							}
 						}

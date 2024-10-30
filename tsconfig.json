@@ -11,7 +11,7 @@
         "outDir": "./dist",
         "baseUrl": "./",
         "paths": {
-            "lam/zcoc_conc/*": [
+            "lam/zcoc/*": [
                 "./webapp/*"
             ]
         },

@@ -1,7 +1,7 @@
 {
   "_version": "1.48.0",
   "sap.app": {
-    "id": "lam.zcoc_conc",
+    "id": "lam.zcoc",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -17,30 +17,29 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/sap/opu/odata/sap/ZCOC_CONC_SRV/",
+        "uri": "/sap/opu/odata/sap/ZCOC_SRV/",
         "type": "OData",
         "settings": {
-          "defaultBindingMode": "TwoWay",
           "annotations": [
-            "zcoc_conc"
+            "zcoc"
           ],
           "localUri": "localService/metadata.xml",
           "odataVersion": "2.0"
         }
       },
-      "zcoc_conc": {
-        "uri": "annotation/zcoc_conc.xml",
+      "zcoc": {
+        "uri": "annotation/zcoc.xml",
         "type": "ODataAnnotation",
         "settings": {
           "maxAge": 0,
-          "localUri": "annotation/zcoc_conc.xml"
+          "localUri": "annotation/zcoc.xml"
         }
       }
     },
     "crossNavigation": {
       "inbounds": {
-        "ZCOC_CONC-display": {
-          "semanticObject": "ZCOC_CONC",
+        "zcoc-display": {
+          "semanticObject": "zcoc",
           "action": "display",
           "title": "{{flpTitle}}",
           "subTitle": "{{flpSubtitle}}",
@@ -91,13 +90,19 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "lam.zcoc_conc.i18n.i18n"
+          "bundleName": "lam.zcoc.i18n.i18n"
         }
       },
       "": {
         "dataSource": "mainService",
         "preload": true,
-        "settings": {}
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultOperationMode": "Server",
+          "defaultUpdateMethod": "Merge",
+          "defaultCountMode": "Inline",
+          "useBatch": true
+        }
       }
     },
     "resources": {
@@ -112,7 +117,7 @@
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
         "async": true,
-        "viewPath": "lam.zcoc_conc.view",
+        "viewPath": "lam.zcoc.view",
         "controlAggregation": "pages",
         "controlId": "app",
         "clearControlAggregation": false
@@ -152,20 +157,20 @@
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "Create",
-          "viewName": "Create"
+          "viewId": "Detail",
+          "viewName": "Detail"
         },
         "TargetDisplay": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "Display",
-          "viewName": "Display"
+          "viewId": "Detail",
+          "viewName": "Detail"
         }                  
       }
     },
     "rootView": {
-      "viewName": "lam.zcoc_conc.view.App",
+      "viewName": "lam.zcoc.view.App",
       "type": "XML",
       "async": true,
       "id": "App"

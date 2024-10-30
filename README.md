@@ -8,16 +8,16 @@
 |**Template Used**<br>simple|
 |**Service Type**<br>SAP System (ABAP On Premise)|
 |**Service URL**<br>http://wdd.lamrc.com:443/sap/opu/odata/sap/ZNSR_CD_SRV
-|**Module Name**<br>zcoc_conc|
+|**Module Name**<br>zcoc|
 |**Application Title**<br>CoC &amp; CoNC Application|
-|**Namespace**<br>lam.zcoc_conc|
+|**Namespace**<br>lam.zcoc|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.108.6|
 |**Enable Code Assist Libraries**<br>True|
 |**Enable TypeScript**<br>True|
 |**Add Eslint configuration**<br>True, see https://www.npmjs.com/package/eslint-plugin-fiori-custom for the eslint rules.|
 
-## zcoc_conc
+## zcoc
 
 CoC &amp; CoNC Application
 

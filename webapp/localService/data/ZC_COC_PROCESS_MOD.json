@@ -1,0 +1,12 @@
+[
+    {
+        "request_no": "1000000001",      
+        "process_module":"Flex HX",
+        "description":"Flex HX"
+    },
+    {
+        "request_no": "1000000001",      
+        "process_module":"Flex RX",
+        "description":"Flex RX"
+    }             
+]

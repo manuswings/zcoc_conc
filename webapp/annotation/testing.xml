@@ -1,94 +1,4 @@
-<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
-    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001')/$value">
-        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
-    </edmx:Reference>
-    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001')/$value">
-        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
-    </edmx:Reference>
-    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
-        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1" />
-    </edmx:Reference>
-    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
-        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1" />
-    </edmx:Reference>
-    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
-        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1" />
-    </edmx:Reference>
-    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml">
-        <edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1" />
-    </edmx:Reference>
-    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Analytics.xml">
-        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics" />
-    </edmx:Reference>
-    <edmx:Reference Uri="/sap/opu/odata/sap/ZCOC_CONC_SRV/$metadata">
-        <edmx:Include Namespace="ZCOC_CONC_SRV" Alias="SAP" />
-    </edmx:Reference>
-    <edmx:DataServices>
-        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="lam.ZCONC_CONC.ZCOC_CONC_SRV">
-            <Annotations Target="ZCOC_CONC_SRV.MasterType">          
-                <Annotation Term="UI.PresentationVariant">
-                    <Record>              
-                        <PropertyValue Property="Visualizations">
-                            <Collection>
-                                <AnnotationPath>@UI.LineItem</AnnotationPath>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="RequestAtLeast">
-                            <Collection>
-                            <PropertyPath>time_elapsed</PropertyPath>
-                            </Collection>
-                        </PropertyValue>                
-                        <PropertyValue Property="SortOrder">
-                            <Collection>
-                                <Record>
-                                <PropertyValue Property="Property" PropertyPath="time_elapsed"/>
-                                <PropertyValue Property="Descending" Bool="false"/>
-                                </Record>
-                            </Collection>
-                        </PropertyValue>
-                    </Record>                   
-                </Annotation>    
-                <Annotation Term="UI.SelectionFields">
-                    <Collection>
-                        <PropertyPath>customer</PropertyPath>
-                        <PropertyPath>process_module</PropertyPath>
-                        <PropertyPath>technology_node</PropertyPath>
-                        <PropertyPath>request_status</PropertyPath>
-                    </Collection>
-                </Annotation>
-                <Annotation Term="UI.LineItem">
-                    <Collection>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="request_no" />
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="customer" />
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="process_module" />
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="technology_node" />
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="application" />
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="date_submitted" />
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="date_requested" />
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="time_elapsed" />
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="request_status" />
-                        </Record>
-                    </Collection>
-                </Annotation>
-            </Annotations>
-            <Annotations Target="ZCOC_CONC_SRV.WorkflowType">             
+  <Annotations Target="ZCOC_SRV.WorkflowType">             
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
@@ -112,11 +22,11 @@
                     </Collection>
                 </Annotation>
             </Annotations>            
-            <Annotations Target="ZCOC_CONC_SRV.MasterType/technology_node">
+            <Annotations Target="ZCOC_SRV.HeaderData/technology_node">
                 <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="F4TechnologyNodeSet" />
+                        <PropertyValue Property="CollectionPath" String="ZC_COC_F4_TECH_NOD" />
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterOut">
@@ -131,7 +41,7 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="ZCOC_CONC_SRV.F4TechnologyNodeType">
+            <Annotations Target="ZCOC_SRV.ZC_COC_F4_TECH_NODType">
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
@@ -143,25 +53,25 @@
                     </Collection>
                 </Annotation>
             </Annotations>
-            <Annotations Target="ZCOC_CONC_SRV.MasterType/competitive_benchmark">
+            <Annotations Target="ZCOC_SRV.HeaderData/competitive_benchmark">
                 <Annotation Term="com.sap.vocabularies.UI.v1.MultiLineText" />
             </Annotations>
-            <Annotations Target="ZCOC_CONC_SRV.MasterType/partfamily_included_conc">
+            <Annotations Target="ZCOC_SRV.HeaderData/partfamily_included_conc">
                 <Annotation Term="com.sap.vocabularies.UI.v1.MultiLineText" />
             </Annotations>          
-            <Annotations Target="ZCOC_CONC_SRV.MasterType/previous_commitment">
+            <Annotations Target="ZCOC_SRV.HeaderData/previous_commitment">
                 <Annotation Term="com.sap.vocabularies.UI.v1.MultiLineText" />
             </Annotations>               
-            <Annotations Target="ZCOC_CONC_SRV.MasterType/fab_and_geo_region">
+            <Annotations Target="ZCOC_SRV.HeaderData/fab_geo_reg">
                 <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>           
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="F4FabAndGeoRegionSet" />
+                        <PropertyValue Property="CollectionPath" String="ZC_COC_F4_FAB_GEO_REG" />
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterOut">
-                                    <PropertyValue Property="LocalDataProperty" PropertyPath="fab_and_geo_region" />
-                                    <PropertyValue Property="ValueListProperty" String="fab_and_geo_region" />
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="fab_geo_reg" />
+                                    <PropertyValue Property="ValueListProperty" String="fab_geo_reg" />
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="description" />
@@ -171,11 +81,11 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="ZCOC_CONC_SRV.F4FabAndGeoRegionType">
+            <Annotations Target="ZCOC_SRV.ZC_COC_F4_FAB_GEO_REGType">
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="fab_and_geo_region" />
+                            <PropertyValue Property="Value" Path="fab_geo_reg" />
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="description" />
@@ -183,11 +93,11 @@
                     </Collection>
                 </Annotation>
             </Annotations>
-            <Annotations Target="ZCOC_CONC_SRV.MasterType/process_module">
+            <Annotations Target="ZCOC_SRV.HeaderData/process_module">
                 <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="F4ProcessModuleSet" />
+                        <PropertyValue Property="CollectionPath" String="ZC_COC_F4_PROCESS_MOD" />
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterOut">
@@ -202,7 +112,7 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="ZCOC_CONC_SRV.MasterType/customer_price_coc_unit">
+            <Annotations Target="ZCOC_SRV.HeaderData/customer_price_coc_unit">
                 <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
@@ -221,7 +131,7 @@
                     </Record>
                 </Annotation>
             </Annotations>   
-            <Annotations Target="ZCOC_CONC_SRV.MasterType/lam_cost_coc_unit">
+            <Annotations Target="ZCOC_SRV.HeaderData/lam_cost_coc_unit">
                 <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
@@ -240,7 +150,7 @@
                     </Record>
                 </Annotation>
             </Annotations>                      
-            <Annotations Target="ZCOC_CONC_SRV.F4ProcessModuleType">
+            <Annotations Target="ZCOC_SRV.ZC_COC_F4_PROCESS_MODType">
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
@@ -252,7 +162,7 @@
                     </Collection>
                 </Annotation>
             </Annotations>
-            <Annotations Target="ZCOC_CONC_SRV.F4CustomerPriceCoCUnitType">
+            <Annotations Target="ZCOC_SRV.F4CustomerPriceCoCUnitType">
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
@@ -264,7 +174,7 @@
                     </Collection>
                 </Annotation>
             </Annotations>    
-            <Annotations Target="ZCOC_CONC_SRV.F4LamCostCoCUnitType">
+            <Annotations Target="ZCOC_SRV.F4LamCostCoCUnitType">
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
@@ -276,11 +186,11 @@
                     </Collection>
                 </Annotation>
             </Annotations>                     
-            <Annotations Target="ZCOC_CONC_SRV.MasterType/application">
+            <Annotations Target="ZCOC_SRV.HeaderData/application">
                 <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="F4ApplicationSet" />
+                        <PropertyValue Property="CollectionPath" String="ZC_COC_F4_APPLICATION" />
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterOut">
@@ -295,11 +205,11 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="ZCOC_CONC_SRV.MasterType/previous_request_reference">
+            <Annotations Target="ZCOC_SRV.HeaderData/previous_request_reference">
                 <Annotation Term="Common.ValueListWithFixedValues" Bool="false"/>
                 <Annotation Term="Common.ValueList">
                     <Record Type="Common.ValueListType">
-                        <PropertyValue Property="CollectionPath" String="MasterSet" />
+                        <PropertyValue Property="CollectionPath" String="ZCOC_DV" />
                         <PropertyValue Property="Parameters">
                             <Collection>
                                 <Record Type="Common.ValueListParameterOut">
@@ -328,15 +238,15 @@
                                 <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="date_requested" />
                                 </Record>                                
-                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                <!-- <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="time_elapsed" />          
-                                </Record> 
+                                </Record>  -->
                             </Collection>
                         </PropertyValue>
                     </Record>
                 </Annotation>
             </Annotations>            
-            <Annotations Target="ZCOC_CONC_SRV.F4ApplicationType">
+            <Annotations Target="ZCOC_SRV.ZC_COC_F4_APPLICATIONType">
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
@@ -348,6 +258,3 @@
                     </Collection>
                 </Annotation>
             </Annotations>
-        </Schema>
-    </edmx:DataServices>
-</edmx:Edmx>

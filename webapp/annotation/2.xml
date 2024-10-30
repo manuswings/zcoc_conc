@@ -1,0 +1,803 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+    Version="4.0">
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1"
+            Alias="Common" />
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1"
+            Alias="UI" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core"
+            Namespace="Org.OData.Core.V1" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation"
+            Namespace="Org.OData.Validation.V1" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml">
+        <edmx:Include Alias="Aggregation"
+            Namespace="Org.OData.Aggregation.V1" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Analytics.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1"
+            Alias="Analytics" />
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/sap/ZSAPART_CR_SRV/$metadata">
+        <edmx:Include Namespace="ZSAPART_CR_SRV"
+            Alias="SAP" />
+    </edmx:Reference>
+
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm"
+            Namespace="etihad.fiori.cr.ZSAPART_CR_SRV">
+            <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType">
+                <Annotation Term="UI.TextArrangement"
+                    EnumMember="UI.TextArrangementType/TextFirst" />
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value"
+                                Path="request_id" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value"
+                                Path="request_mode" />
+                            <PropertyValue Property="SortOrder">
+                                <Collection>
+                                    <Record>
+                                        <PropertyValue Property="Property"
+                                            PropertyPath="request_mode" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value"
+                                Path="groups" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value"
+                                Path="subject" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value"
+                                Path="category" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value"
+                                Path="subcategory" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value"
+                                Path="request_status" />
+                            <PropertyValue Property="Criticality"
+                                Path="request_status_criticality" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>request_id</PropertyPath>
+                        <!-- <PropertyPath>request_mode</PropertyPath> -->
+                        <PropertyPath>groups</PropertyPath>
+                        <!-- <PropertyPath>request_type</PropertyPath> -->
+                        <PropertyPath>request_status</PropertyPath>
+                        <!-- <PropertyPath>priority</PropertyPath> -->
+                        <PropertyPath>category</PropertyPath>
+                        <PropertyPath>subcategory</PropertyPath>
+                        <!-- <PropertyPath>submodule</PropertyPath> -->
+                        <PropertyPath>item</PropertyPath>
+                        <PropertyPath>technician_involved</PropertyPath>
+                        <PropertyPath>architect_involved</PropertyPath>
+                        <!-- <PropertyPath>to_technician/bname</PropertyPath>
+                        <PropertyPath>to_architect/bname</PropertyPath> -->
+                        <PropertyPath>product_owner</PropertyPath>
+                        <PropertyPath>requester</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <!-- Technician Involved -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/technician_involved">
+                    <Annotation Term="Common.ValueListWithFixedValues"
+                        Bool="true"/>
+                    <!-- <Annotation Term="com.sap.vocabularies.Common.v1.Text" Path="full_name">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst" />
+                    </Annotation> -->
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath"
+                                String="zsapart_team_f4" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="technician_involved" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="bname" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="full_name" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="full_name" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="job_desc" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="job_desc" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="manager_full_name" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                            <PropertyValue Property="FetchValues"
+                                Int="1" />
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <!-- Architect Involved -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/architect_involved">
+                    <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+                    <PropertyValue Property="SearchSupported"
+                        Bool="true" />
+                    <PropertyValue Property="FetchValues"
+                        Int="2" />
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath"
+                                String="zsapart_team_f4" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="architect_involved" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="bname" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="full_name" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="job_desc" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterIn">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="c_architect" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="job_desc" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterConstant">
+                                        <PropertyValue Property="Constant"
+                                            String="ARCHITECT" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="job_desc" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="manager_full_name" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <!-- request_id f4 help -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/request_id">
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath"
+                                String="zsapart_cr_ddl" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="request_id" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="request_id" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="subject" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="requestor" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="groups" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="category" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="subcategory" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="submodule" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <!-- request_mode f4 help -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/request_mode">
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath"
+                                String="zsapart_cr_mode_f4" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="request_mode" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="request_mode" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="request_mode" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <!-- groups f4 help -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/groups">
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath"
+                                String="zsapart_cr_group_f4" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="groups" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="groups" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="groups" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <!-- request_type f4 help  -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/request_type">
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath"
+                                String="zsapart_cr_type_f4" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="request_type" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="request_type" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="request_type" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <!-- request_status f4 help  -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/request_status">
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath"
+                                String="zsapart_cr_status_f4" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="request_status" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="request_status" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="request_status" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <!-- priority f4 help  -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/priority">
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath"
+                                String="zsapart_cr_priority_f4" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="priority" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="priority" />
+                                    </Record>
+                                    <!-- <Record Type="Common.ValueListParameterDisplayOnly">
+                    <PropertyValue Property="ValueListProperty" String="priority"/>
+                  </Record>                   -->
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <!-- category f4 help  -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/category">
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath"
+                                String="zsapart_cr_category_f4" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="category" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="category" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="category" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <!-- subcategory f4 help  -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/subcategory">
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath"
+                                String="zsapart_cr_subcategory_f4" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="subcategory" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="subcategory" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="subcategory" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <!-- submodule f4 help  -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/submodule">
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath"
+                                String="zsapart_cr_submodule_f4" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="submodule" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="submodule" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="submodule" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+                <!-- item f4 help  -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/item">
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath"
+                                String="zsapart_cr_item_f4" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty"
+                                            PropertyPath="item" />
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="item" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty"
+                                            String="item" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Annotation>
+                </Annotations>
+            </Annotations>
+            <!-- sap art team f4 -->
+            <Annotations Target="ZSAPART_CR_SRV.zsapart_team_f4Type">
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_team_f4Type/bname">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextFirst"
+                        Path="full_name"/>
+                </Annotations>
+                <!-- hiding it from the selection field -->
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_team_f4Type/additional_roles">
+                    <Annotation Term="UI.HiddenFilter"
+                        Bool="true"/>
+                </Annotations>
+                <!-- team f4 help  -->
+                <!-- <Annotations Target="ZSAPART_CR_SRV.zsapart_team_f4Type/bname">
+                    <Annotation Term="Common.Text" Path="full_name">
+                        <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst" />
+                    </Annotation>
+                    <Annotation Term="Common.ValueList">
+                        <Record Type="Common.ValueListType">
+                            <PropertyValue Property="CollectionPath" String="zsapart_team_f4" />
+                            <PropertyValue Property="Parameters">
+                                <Collection>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty" PropertyPath="bname" />
+                                        <PropertyValue Property="ValueListProperty" String="bname" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty" PropertyPath="full_name" />
+                                        <PropertyValue Property="ValueListProperty" String="full_name" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterOut">
+                                        <PropertyValue Property="LocalDataProperty" PropertyPath="job_desc" />
+                                        <PropertyValue Property="ValueListProperty" String="job_desc" />
+                                    </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="manager_bname" />
+                                </Record>
+                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                        <PropertyValue Property="ValueListProperty" String="manager_full_name" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                            <PropertyValue Property="FetchValues" Int="1" />
+                        </Record>
+                    </Annotation>
+                </Annotations> -->
+            </Annotations>
+            <!-- product owner f4 help  -->
+            <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/product_owner">
+                <Annotation Term="Common.Text"
+                    Path="product_owner_full_name">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextFirst" />
+                </Annotation>
+                <Annotation Term="Common.FieldControl"
+                    Path="product_owner"
+                    EnumMember="Common.FieldControlType/Mandatory" />
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>product_owner</PropertyPath>
+                        <PropertyPath>product_owner_full_name</PropertyPath>
+                        <PropertyPath>job_desc</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath"
+                            String="zsapart_team_f4" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="product_owner" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="bname" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="product_owner_full_name" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="full_name" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="c_product_owner" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="job_desc" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="job_desc" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="FetchValues"
+                            Int="1" />
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_ddlType/lead_technician">
+                <Annotations Target="ZSAPART_CR_SRV.zsapart_team_f4Type/bname">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextFirst"
+                        Path="full_name"/>
+                </Annotations>
+                <Annotation Term="Common.Text"
+                    Path="lead_technician_full_name">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextFirst" />
+                </Annotation>
+                <Annotation Term="Common.FieldControl"
+                    Path="lead_technician"
+                    EnumMember="Common.FieldControlType/Mandatory" />
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath"
+                            String="zsapart_team_f4" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="lead_technician" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="bname" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="lead_technician_full_name" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="full_name" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="c_sap" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="job_desc" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="job_desc" />
+                                </Record>
+                                <!-- <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="manager_bname" />
+                                </Record> -->
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="manager_full_name" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="FetchValues"
+                            Int="1" />
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <!-- architect f4 help  -->
+            <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_architectType/bname">
+                <Annotation Term="Common.Text"
+                    Path="full_name">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextFirst" />
+                </Annotation>
+                <Annotation Term="Common.FieldControl"
+                    Path="bname"
+                    EnumMember="Common.FieldControlType/Optional" />
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath"
+                            String="zsapart_team_f4" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="bname" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="bname" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="full_name" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="full_name" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="c_architect" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="job_desc" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="job_desc" />
+                                </Record>
+                                <!-- <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="manager_bname" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="manager_full_name" />
+                                </Record> -->
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="FetchValues"
+                            Int="1" />
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <!-- assigned t ~ bname  f4 help  -->
+            <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_assigned_toType/bname">
+                <Annotation Term="Common.Text"
+                    Path="full_name">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextFirst" />
+                </Annotation>
+                <Annotation Term="Common.FieldControl"
+                    Path="bname"
+                    EnumMember="Common.FieldControlType/Optional" />
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath"
+                            String="zsapart_team_f4" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="bname" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="bname" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="full_name" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="full_name" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="job_desc" />
+                                </Record>
+                                <!-- <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="manager_bname" />
+                                </Record> -->
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="manager_full_name" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="FetchValues"
+                            Int="1" />
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <!-- technician graph  -->
+            <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_technicianType">
+                <Annotation Term="UI.Chart"
+                    Qualifier="Quantity_Chart">
+                    <Record>
+                        <PropertyValue Property="ChartType"
+                            EnumMember="UI.ChartType/BarStacked" />
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>full_name_job_desc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>story_point</PropertyPath>
+                                <PropertyPath>analysis_story_point</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <!-- technician ~ bname f4 help  -->
+            <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_technicianType/bname">
+                <Annotation Term="Common.Text"
+                    Path="full_name">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextFirst" />
+                </Annotation>
+                <Annotation Term="Common.FieldControl"
+                    Path="bname"
+                    EnumMember="Common.FieldControlType/Optional" />
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath"
+                            String="zsapart_team_f4" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="bname" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="bname" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="full_name" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="full_name" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="job_desc" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="manager_full_name" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="FetchValues"
+                            Int="1" />
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <!-- technician dependant bname f4 help  -->
+            <Annotations Target="ZSAPART_CR_SRV.zsapart_cr_technician_depType/dependent_bname">
+                <Annotation String="Technician Dependents User ID"
+                    Term="Common.Label" />
+                <Annotation Term="Common.Text"
+                    Path="dependent_full_name">
+                    <Annotation Term="UI.TextArrangement"
+                        EnumMember="UI.TextArrangementType/TextFirst" />
+                </Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath"
+                            String="zsapart_team_f4" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="dependent_bname" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="bname" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="dependent_full_name" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="full_name" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="LocalDataProperty"
+                                        PropertyPath="job_desc" />
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="job_desc" />
+                                </Record>
+                                <!-- <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="manager_bname" />
+                                </Record> -->
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty"
+                                        String="manager_full_name" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
