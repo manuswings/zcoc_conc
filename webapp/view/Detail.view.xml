@@ -462,6 +462,7 @@
                     <uxap:ObjectPageSubSection>
                         <uxap:blocks>
                             <UploadCollection id="DetailUploadCollection"
+                                uploadButtonInvisible="{= ${view>/mode} === 'create' ? false : ( ${role} === 'userrole' ?  false : true ) }"
                                 noDataText="No files found."
                                 noDataDescription="Drop files to upload, or use the &quot;+&quot; button."
                                 uploadComplete="onUploadComplete"
@@ -519,7 +520,7 @@
                     <uxap:ObjectPageSubSection>
                         <uxap:blocks>
                             <VBox>
-                                <FeedInput post="handleAddComment"
+                                <FeedInput post="handleAddComment" visible="{= ${view>/mode} === 'create' ? true : ( ${role} === 'userrole' ?  true : false ) }"
                                     enabled="{= ${view>/mode} === 'create' ? true : ( ${role} === 'userrole' ?  true : false ) }"
                                     class="sapUiSmallMarginTopBottom" />
                                 <List showSeparators="Inner"
